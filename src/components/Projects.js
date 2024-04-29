@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useCallback, useRef, useState } from "react";
 import Gallery from "./Gallery";
 
@@ -19,7 +18,7 @@ export default function Project() {
       }
     });
     if (node) carsObserver.current.observe(node);
-  }, [setcarsViewing]);
+  },[]);
 
   const QuickSection = useCallback((node) => {
     if (quickObserver.current) quickObserver.current.disconnect();
@@ -29,15 +28,15 @@ export default function Project() {
       }
     });
     if (node) quickObserver.current.observe(node);
-  }, [setQuickViewing]);
+  },[]);
 
   const handleOpenGallery = (Ref) => {
     Ref.current.firstChild.firstChild.click();
   };
 
   return (
-    <section id="projects-section" className="w-full max-w-[1200px] py-32">
-      <h2 className="text-zinc-500 px-10">// Projects</h2>
+    <section id="projects-section" className="w-full max-w-[1200px] pb-5 pt-32 sm:pb-10 sm:pt-32 md:py-32">
+      <h2 className="text-zinc-500 px-10">&#47;&#47; Projects</h2>
       <div className="w-full flex flex-col mt-14 items-center">
         <div
           ref={carsSection}

@@ -17,8 +17,8 @@ export default function Opening({ Opening, setOpening }) {
         !Opening && "fade-out"
       } fixed inset-0 bg-primary flex items-center justify-center z-[9999] select-none`}
     >
-      <div className="progress-loader">
-        <div className="progress"></div>
+      <div class="progress-loader">
+        <div class="progress"></div>
       </div>
     </div>
   );

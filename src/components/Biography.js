@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useCallback, useRef, useState } from "react";
 
 export default function Biography() {
@@ -16,7 +15,7 @@ export default function Biography() {
       }
     });
     if (node) observer.current.observe(node);
-  }, [setViewing]);
+  },[]);
 
   const handleBiographyChangeTab = (index) => {
     setTabIndex(index);
@@ -38,7 +37,7 @@ export default function Biography() {
           Viewing ? "opacity-1 translate-y-0" : "opacity-0 translate-y-52"
         }`}
       >
-        <h2 className="text-zinc-500 w-full">// Biography</h2>
+        <h2 className="text-zinc-500 w-full">&#47;&#47; Biography</h2>
         <div
           ref={biographySection}
           className="w-full flex flex-col sm:flex-row justify-start gap-5 items-start mt-10 overflow-hidden"

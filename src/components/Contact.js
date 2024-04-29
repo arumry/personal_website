@@ -23,7 +23,7 @@ export default function Contact() {
       }
     });
     if (node) observer.current.observe(node);
-  }, [setViewing]);
+  },[]);
 
   const handleChange = (event) => {
     setSuccess(false);
@@ -61,14 +61,14 @@ export default function Contact() {
       setLoading(true);
       emailjs
         .send(
-          "service_id",
-          "template_id",
+          "service_o40d0rj",
+          "template_uts0ynn",
           {
             sender_name: Form.name,
             sender_email: Form.email,
             received_message: Form.message,
           },
-          "public_key"
+          "yEZEiEI9O1vQnZxUN"
         )
         .then(
           (result) => {

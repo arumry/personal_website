@@ -4,7 +4,7 @@ import { IconContext } from "react-icons";
 
 export default function Hero() {
   return (
-    <section className="w-full max-w-[1480px] min-h-[800px] px-10 md:px-20 pt-28 pb-14 md:py-52 flex justify-start items-center md:gap-5 flex-wrap md:flex-nowrap lg:gap-[10%]">
+    <section className="w-full max-w-[1480px] min-h-[600px] sm:min-h-[800px] px-10 md:px-20 py-10 md:py-52 flex justify-start items-center md:gap-5 flex-wrap md:flex-nowrap lg:gap-[10%]">
       <div className="relative w-full  text-white flex flex-col items-center md:items-start font-semibold lg:font-bold">
         <div className="max-w-full w-fit">
           <p className="text-base md:text-lg z-10 mb-2 lg:mb-5 text-tertiary">
@@ -14,7 +14,7 @@ export default function Hero() {
             Aaron Rumery
           </h2>
           <h2 className="z-10 relative text-2xl lg:text-4xl mt-5 text-gray-400  sm:whitespace-nowrap">
-            And I'm a Senior Software Engineer...
+            And I'm a Senior Software Engineer..
           </h2>
           <p className="mt-7 mb-5 max-w-3xl md:my-7 lg:my-8 text-xs font-medium md:text-sm lg:text-base text-gray-500">
             <span className="text-sixth/90 text-base">&#123; "</span>description<span className="text-sixth/90 text-base">":&nbsp;"</span>
@@ -41,8 +41,8 @@ export default function Hero() {
           <div className="w-fit h-fit bg-gray-300 overflow-visible rounded">
             <a
               href="https://github.com/arumry"
-              rel="noreferrer"
               target="_blank"
+              rel="noreferrer"
               className="text-gray-300 bg-primary px-4 py-1 md:px-6 md:py-1.5 lg:px-8 lg:py-2.5 text-xs md:text-sm font-semibold lg:font-bold flex gap-3 items-center transition-all hover:translate-x-0.5 hover:-translate-y-0.5 whitespace-nowrap cursor-pointer border rounded border-gray-300"
             >
               <IconContext.Provider
