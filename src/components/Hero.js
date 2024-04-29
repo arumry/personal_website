@@ -53,46 +53,7 @@ export default function Hero() {
             </a>
           </div>
         </div>
-        {/* <div className="w-full max-w-[400px] z-10 mt-8 flex gap-0 md:gap-16 lg:gap-0 justify-evenly md:justify-start lg:justify-evenly items-center">
-        
-
-          <a
-            href="https://www.linkedin.com/in/oussama-dhraief/"
-            target="_blank"
-            className="z-10 hover:-translate-y-0.5 transition-all"
-          >
-            <IconContext.Provider
-              value={{ className: "w-5 h-5 md:h-6 md:w-6" }}
-            >
-              <FiLinkedin />
-            </IconContext.Provider>
-          </a>
-
-          <a
-            href="https://github.com/oussamadhraief"
-            target="_blank"
-            className="z-10 hover:-translate-y-0.5 transition-all"
-          >
-            <IconContext.Provider
-              value={{ className: "w-5 h-5 md:h-6 md:w-6" }}
-            >
-              <FiGithub />
-            </IconContext.Provider>
-          </a>
-        </div> */}
       </div>
-      {/* <div className="w-full max-w-[400px] md:max-w-[50%] md:w-1/2">
-        <div className="w-full min-w-[350px] lg:min-w-[400px]">
-          <lottie-player
-            src="https://assets8.lottiefiles.com/packages/lf20_tno6cg2w.json"
-            background="transparent"
-            speed="1"
-            style={{ width: "100%", aspectRatio: "1/1" }}
-            loop
-            autoplay
-          ></lottie-player>
-        </div>
-      </div> */}
     </section>
   );
 }
