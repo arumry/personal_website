@@ -1,5 +1,3 @@
-import { Typewriter } from "react-simple-typewriter";
-import { FiFacebook } from "react-icons/fi";
 import { FiLinkedin } from "react-icons/fi";
 import { FiGithub } from "react-icons/fi";
 import { IconContext } from "react-icons";
@@ -29,6 +27,7 @@ export default function Hero() {
             <a
               href="https://www.linkedin.com/in/arumery/"
               target="_blank"
+              rel="noreferrer"
               className="text-primary hover:text-gray-200 bg-secondary px-3 py-1 md:px-4 md:py-1.5 lg:px-8 lg:py-2.5 text-xs md:text-sm font-semibold lg:font-bold flex gap-3 items-center transition-all hover:translate-x-0.5 hover:-translate-y-0.5 whitespace-nowrap cursor-pointer border rounded border-secondary hover:border-l-primary hover:border-b-primary"
             >
              <IconContext.Provider
@@ -42,6 +41,7 @@ export default function Hero() {
           <div className="w-fit h-fit bg-gray-300 overflow-visible rounded">
             <a
               href="https://github.com/arumry"
+              rel="noreferrer"
               target="_blank"
               className="text-gray-300 bg-primary px-4 py-1 md:px-6 md:py-1.5 lg:px-8 lg:py-2.5 text-xs md:text-sm font-semibold lg:font-bold flex gap-3 items-center transition-all hover:translate-x-0.5 hover:-translate-y-0.5 whitespace-nowrap cursor-pointer border rounded border-gray-300"
             >

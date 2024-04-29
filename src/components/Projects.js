@@ -1,8 +1,6 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useCallback, useRef, useState } from "react";
 import Gallery from "./Gallery";
-import { IconContext } from "react-icons";
-import { FiGithub } from "react-icons/fi";
-import { HiOutlineExternalLink } from "react-icons/hi";
 
 export default function Project() {
   const carsObserver = useRef();
@@ -21,7 +19,7 @@ export default function Project() {
       }
     });
     if (node) carsObserver.current.observe(node);
-  });
+  }, [setcarsViewing]);
 
   const QuickSection = useCallback((node) => {
     if (quickObserver.current) quickObserver.current.disconnect();
@@ -31,7 +29,7 @@ export default function Project() {
       }
     });
     if (node) quickObserver.current.observe(node);
-  });
+  }, [setQuickViewing]);
 
   const handleOpenGallery = (Ref) => {
     Ref.current.firstChild.firstChild.click();

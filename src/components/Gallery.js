@@ -27,7 +27,7 @@ export default function Gallery(props) {
       lightbox.destroy();
       lightbox = null;
     };
-  }, []);
+  }, [props.galleryID]);
 
   return (
     <div

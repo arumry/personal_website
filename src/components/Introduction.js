@@ -12,7 +12,7 @@ export default function Introduction() {
       }
     });
     if (node) observer.current.observe(node);
-  });
+  }, [setViewing]);
 
   return (
     <>

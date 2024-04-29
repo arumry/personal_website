@@ -23,7 +23,7 @@ export default function Contact() {
       }
     });
     if (node) observer.current.observe(node);
-  });
+  }, [setViewing]);
 
   const handleChange = (event) => {
     setSuccess(false);

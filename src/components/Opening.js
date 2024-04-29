@@ -9,7 +9,7 @@ export default function Opening({ Opening, setOpening }) {
     return () => {
       clearTimeout(danger);
     };
-  }, []);
+  }, [setOpening]);
 
   return (
     <div

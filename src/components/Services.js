@@ -1,5 +1,5 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useCallback, useRef, useState } from "react";
-import { BiPaint } from "react-icons/bi";
 import { TbCodeDots } from "react-icons/tb";
 import { FiLock, FiServer } from "react-icons/fi";
 import { IconContext } from "react-icons";
@@ -17,7 +17,7 @@ export default function Services() {
       }
     });
     if (node) observer.current.observe(node);
-  });
+  }, [setViewing]);
 
   return (
     <>

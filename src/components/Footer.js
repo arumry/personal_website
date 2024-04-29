@@ -1,9 +1,7 @@
-import { FiFacebook } from "react-icons/fi";
 import { FiLinkedin } from "react-icons/fi";
 import { FiGithub } from "react-icons/fi";
 import { IconContext } from "react-icons";
 import { MdOutlineMail } from "react-icons/md";
-import { HiOutlinePhone } from "react-icons/hi";
 
 export default function Footer() {
   return (
@@ -13,6 +11,7 @@ export default function Footer() {
         <a
           href="https://www.linkedin.com/in/arumery/"
           target="_blank"
+          rel="noreferrer"
           className="z-10 hover:-translate-y-1 transition-all pt-3.5"
         >
           <IconContext.Provider value={{ className: "h-6 w-6" }}>
@@ -23,6 +22,7 @@ export default function Footer() {
         <a
           href="https://github.com/arumry"
           target="_blank"
+          rel="noreferrer"
           className="z-10 hover:-translate-y-1 transition-all pt-3.5"
         >
           <IconContext.Provider value={{ className: "h-6 w-6" }}>

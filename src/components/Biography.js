@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useCallback, useRef, useState } from "react";
 
 export default function Biography() {
@@ -15,7 +16,7 @@ export default function Biography() {
       }
     });
     if (node) observer.current.observe(node);
-  });
+  }, [setViewing]);
 
   const handleBiographyChangeTab = (index) => {
     setTabIndex(index);
@@ -55,7 +56,7 @@ export default function Biography() {
               </h2>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
-                  TabIndex == 0
+                  TabIndex === 0
                     ? "text-secondary bg-primary_dark/70"
                     : "hover:text-secondary/80 hover:translate-x-0.5 hover:-translate-y-0.5 "
                 }`}
@@ -65,7 +66,7 @@ export default function Biography() {
               </button>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
-                  TabIndex == 1
+                  TabIndex === 1
                     ? "text-secondary bg-primary_dark/70"
                     : "hover:text-secondary/80 hover:translate-x-0.5 hover:-translate-y-0.5 "
                 }`}
@@ -75,7 +76,7 @@ export default function Biography() {
               </button>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
-                  TabIndex == 2
+                  TabIndex === 2
                     ? "text-secondary bg-primary_dark/70"
                     : "hover:text-secondary/80 hover:translate-x-0.5 hover:-translate-y-0.5 "
                 }`}
@@ -85,7 +86,7 @@ export default function Biography() {
               </button>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
-                  TabIndex == 3
+                  TabIndex === 3
                     ? "text-secondary bg-primary_dark/70"
                     : "hover:text-secondary/80 hover:translate-x-0.5 hover:-translate-y-0.5 "
                 }`}
@@ -95,7 +96,7 @@ export default function Biography() {
               </button>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
-                  TabIndex == 4
+                  TabIndex === 4
                     ? "text-secondary bg-primary_dark/70"
                     : "hover:text-secondary/80 hover:translate-x-0.5 hover:-translate-y-0.5 "
                 }`}
@@ -108,7 +109,7 @@ export default function Biography() {
               </h2>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
-                  TabIndex == 5
+                  TabIndex === 5
                     ? "text-secondary bg-primary_dark/70"
                     : "hover:text-secondary/80 hover:translate-x-0.5 hover:-translate-y-0.5 "
                 }`}
@@ -118,7 +119,7 @@ export default function Biography() {
               </button>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
-                  TabIndex == 6
+                  TabIndex === 6
                     ? "text-secondary bg-primary_dark/70"
                     : "hover:text-secondary/80 hover:translate-x-0.5 hover:-translate-y-0.5 "
                 }`}
@@ -128,7 +129,7 @@ export default function Biography() {
               </button>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
-                  TabIndex == 7
+                  TabIndex === 7
                     ? "text-secondary bg-primary_dark/70"
                     : "hover:text-secondary/80 hover:translate-x-0.5 hover:-translate-y-0.5 "
                 }`}
@@ -138,7 +139,7 @@ export default function Biography() {
               </button>
             </div>
           </div>
-          {TabIndex == 0 && (
+          {TabIndex === 0 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
                 Senior software engineer
@@ -200,7 +201,7 @@ export default function Biography() {
               </div>
             </div>
           )}
-          {TabIndex == 1 && (
+          {TabIndex === 1 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
                 Senior software engineer
@@ -273,7 +274,7 @@ export default function Biography() {
               </div>
             </div>
           )}
-          {TabIndex == 2 && (
+          {TabIndex === 2 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
                 Software engineer{" "}
@@ -314,7 +315,7 @@ export default function Biography() {
               </div>
             </div>
           )}
-          {TabIndex == 3 && (
+          {TabIndex === 3 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
                 Software engineer{" "}
@@ -349,7 +350,7 @@ export default function Biography() {
               </div>
             </div>
           )}
-          {TabIndex == 4 && (
+          {TabIndex === 4 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
                 Web developer{" "}
@@ -365,7 +366,7 @@ export default function Biography() {
               <p className="text-sm text-zinc-400 mt-1 mb-6">2012 - 2014</p>
             </div>
           )}
-          {TabIndex == 5 && (
+          {TabIndex === 5 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
                 Extended Studies Machine Learning Engineering Bootcamp{" "}
@@ -380,7 +381,7 @@ export default function Biography() {
               </p>
             </div>
           )}
-          {TabIndex == 6 && (
+          {TabIndex === 6 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
                 Certificate Of Completion, Full Stack Software Engineer{" "}
@@ -394,7 +395,7 @@ export default function Biography() {
               </p>
             </div>
           )}
-          {TabIndex == 7 && (
+          {TabIndex === 7 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
                 Coursework toward a Bachelor of Science (B.Sc.) In Computer
