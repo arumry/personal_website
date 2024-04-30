@@ -14,7 +14,7 @@ export default function Hero() {
             Aaron Rumery
           </h2>
           <h2 className="z-10 relative text-2xl lg:text-4xl mt-5 text-gray-400  sm:whitespace-nowrap">
-            And I'm a Senior Software Engineer..
+            And I'm a Senior Software Engineer
           </h2>
           <p className="mt-7 mb-5 max-w-3xl md:my-7 lg:my-8 text-xs font-medium md:text-sm lg:text-base text-gray-500">
             <span className="text-sixth/90 text-base">&#123; "</span>description<span className="text-sixth/90 text-base">":&nbsp;"</span>
