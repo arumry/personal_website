@@ -59,7 +59,7 @@ export default function Services() {
                 <TbCodeDots />
               </IconContext.Provider>
             </div>
-            <h3 className="text-secondary">Clean code</h3>
+            <h3 className="text-secondary">Clean Code</h3>
           </div>
           <div className="mt-1 flex gap-2 text-[15px]">
             <p className="py-5 ">
