@@ -71,7 +71,7 @@ export default function Biography() {
                 }`}
                 onClick={() => handleBiographyChangeTab(1)}
               >
-                Cars.Com
+                Cars.com
               </button>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
