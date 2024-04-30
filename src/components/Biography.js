@@ -141,7 +141,7 @@ export default function Biography() {
           {TabIndex === 0 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
-                Senior software engineer
+                Senior Software Engineer
                 <span className="text-sixth"> @ Payward, Inc. (Remote)</span>
               </h3>
               <p className="text-sm text-zinc-400 mt-1 mb-6">2021 - Present</p>
@@ -203,11 +203,11 @@ export default function Biography() {
           {TabIndex === 1 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
-                Senior software engineer
-                <span className="text-sixth"> @ Cars.Com (Remote)</span>
+                Senior Software Engineer
+                <span className="text-sixth"> @ Cars.com (Remote)</span>
               </h3>
               <p className="text-sm text-zinc-400 mt-1 mb-6">2019 – 2021</p>
-              <h3>Software engineer </h3>
+              <h3>Software Engineer </h3>
               <p className="text-sm text-zinc-400 mt-1 mb-6">2017 – 2019</p>
               <ul className="relative pl-5 text-sm text-zinc-300 list-disc flex flex-col gap-4">
                 <li>
@@ -276,7 +276,7 @@ export default function Biography() {
           {TabIndex === 2 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
-                Software engineer{" "}
+                Software Engineer{" "}
                 <span className="text-sixth">@ MVPindex - Dallas, TX</span>
               </h3>
               <p className="text-sm text-zinc-400 mt-1 mb-6">2017</p>
@@ -317,8 +317,8 @@ export default function Biography() {
           {TabIndex === 3 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
-                Software engineer{" "}
-                <span className="text-sixth">@ Zefr - PROVO, UT</span>
+                Software Engineer{" "}
+                <span className="text-sixth">@ ZEFR - PROVO, UT</span>
               </h3>
               <p className="text-sm text-zinc-400 mt-1 mb-6">2015 - 2017</p>
               <ul className="relative pl-5 text-sm text-zinc-300 list-disc flex flex-col gap-4">
@@ -352,14 +352,14 @@ export default function Biography() {
           {TabIndex === 4 && (
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
-                Web developer{" "}
+                Web Developer{" "}
                 <span className="text-sixth">
                   @ About Time Technologies, LLC
                 </span>
               </h3>
               <p className="text-sm text-zinc-400 mt-1 mb-6">2014 - 2015</p>
               <h3>
-                Technical supervisor{" "}
+                Technical Supervisor{" "}
                 <span className="text-sixth">@ Bluehost</span>
               </h3>
               <p className="text-sm text-zinc-400 mt-1 mb-6">2012 - 2014</p>

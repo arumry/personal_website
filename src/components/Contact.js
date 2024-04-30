@@ -125,7 +125,7 @@ export default function Contact() {
                 NameError ? "visible" : "invisible"
               } text-red-500`}
             >
-              Your name is invalid.
+              A name is required.
             </p>
           </div>
           <div className="w-full">
@@ -144,7 +144,7 @@ export default function Contact() {
                 EmailError ? "visible" : "invisible"
               } text-red-500`}
             >
-              Your Email is invalid.
+              A valid email is required.
             </p>
           </div>
           <div className="w-full pb-8 md:pb-14">
@@ -163,7 +163,7 @@ export default function Contact() {
                 MessageError ? "visible" : "invisible"
               } text-red-500`}
             >
-              Your Message is invalid.
+              A message is required.
             </p>
           </div>
           <button
