@@ -18,7 +18,7 @@ export default function Hero() {
           </h2>
           <p className="mt-7 mb-5 max-w-3xl md:my-7 lg:my-8 text-xs font-medium md:text-sm lg:text-base text-gray-500">
             <span className="text-sixth/90 text-base">&#123; "</span>description<span className="text-sixth/90 text-base">":&nbsp;"</span>
-            With over a decade of experience in the industry, I have a diverse background in back-end development. My work involves architecting robust systems that power seamless user interactions, focusing on creating resilient and scalable software solutions.
+            With over a decade of experience in the industry, I have a diverse background in full stack development. My work involves architecting and implementing robust systems that power seamless user interactions, focusing on creating resilient and scalable end-to-end software solutions.
             <span className="text-sixth/90 text-base">" &#125;</span>
           </p>
         </div>
