@@ -31,7 +31,7 @@ export default function Introduction() {
               About me
             </h2>
             <p className="text-gray-200 whitespace-normal text-sm md:text-lg">
-              Forward-Thinking Senior Software Engineer showcasing over ten
+              Forward-thinking Senior Software Engineer showcasing over ten
               years of developing innovative technologies to improve user
               experiences and resolve complex problems. Strategic, influential
               leader experienced in co-authoring specifications, design
