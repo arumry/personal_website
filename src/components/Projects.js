@@ -81,7 +81,7 @@ export default function Project() {
               Work project
             </h3>
             <h3 className="text-white text-2xl mb-3 self-start pl-0 md:pl-3">
-              cars.com
+              Cars.com
             </h3>
             <div className="bg-primary_dark rounded-md w-full md:w-[110%] h-fit text-white text-sm z-20 px-5 py-3 shadow-card">
             <span className="text-fourth text-base">&#123; "</span>content<span className="text-fourth text-base">": "</span> Elevated user
@@ -119,7 +119,7 @@ export default function Project() {
         >
           <div className="w-full md:w-[40%] order-1 my-5 md:my-0 flex flex-col justify-start items-start">
             <h3 className="text-xs text-tertiary">Work project</h3>
-            <h3 className="text-white text-2xl mb-3">Zefr</h3>
+            <h3 className="text-white text-2xl mb-3">ZEFR</h3>
             <div className="bg-primary_dark rounded-md w-full md:w-[110%] h-fit text-white text-sm z-20 px-5 py-3 shadow-card">
             <span className="text-tertiary text-base">&#123; "</span>content<span className="text-tertiary text-base">": "</span> Enabled seamless collaboration and boosted campaign performance with an Influencer Management System, optimizing targeting and reducing costs
               <span className="text-tertiary">" &#125;</span>
