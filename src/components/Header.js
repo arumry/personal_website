@@ -28,7 +28,7 @@ export default function Header() {
     >
       <div className="w-full flex items-center justify-between px-5 xl:px-10 py-4 flex-wrap lg:flex-nowrap">
         <a href="/" className="text-white text-sm sm:text-base md:text-lg code-font">
-          <span className="text-secondary">PersonalProfile</span>
+          <span className="text-secondary">Profile</span>
           <span className="text-fourth">::</span>
           <span className="text-tertiary">aaron_rumery</span>
           <span className="text-fourth">();</span>
