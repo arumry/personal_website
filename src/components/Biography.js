@@ -61,7 +61,7 @@ export default function Biography() {
                 }`}
                 onClick={() => handleBiographyChangeTab(0)}
               >
-                Kraken Digital Asset Exchange
+                Kraken
               </button>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
@@ -148,8 +148,7 @@ export default function Biography() {
               <ul className="relative pl-5 text-sm text-zinc-300 list-disc flex flex-col gap-4">
                 <li>
                   Reduced downtime by 2% and increased data throughput by 11% by
-                  engineering fault-tolerant data pipelines through Rust,
-                  Python, and TypeScript.
+                  engineering fault-tolerant data pipelines through Rust, Golang, and TypeScript.
                 </li>
                 <li>
                   Cut message processing latency by optimizing Kafka-based data
