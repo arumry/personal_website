@@ -61,7 +61,7 @@ export default function Biography() {
                 }`}
                 onClick={() => handleBiographyChangeTab(0)}
               >
-                Payward, Inc.
+                Kraken Digital Asset Exchange
               </button>
               <button
                 className={`py-2.5 w-fit sm:w-full text-left px-4 sm:px-2 rounded-md sm:rounded-r-md transition-all whitespace-nowrap overflow-hidden overflow-ellipsis max-w-fit sm:max-w-full ${
@@ -142,9 +142,9 @@ export default function Biography() {
             <div className="w-full simple-fade-in-animation p-4 min-h-[250px]">
               <h3>
                 Senior Software Engineer
-                <span className="text-sixth"> @ Payward, Inc. (Remote)</span>
+                <span className="text-sixth"> @ Kraken Digital Asset Exchange (Remote)</span>
               </h3>
-              <p className="text-sm text-zinc-400 mt-1 mb-6">2021 - Present</p>
+              <p className="text-sm text-zinc-400 mt-1 mb-6">2021 - 2024</p>
               <ul className="relative pl-5 text-sm text-zinc-300 list-disc flex flex-col gap-4">
                 <li>
                   Reduced downtime by 2% and increased data throughput by 11% by
