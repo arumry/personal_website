@@ -370,7 +370,7 @@ export default function Biography() {
                 Extended Studies Machine Learning Engineering Bootcamp{" "}
                 <span className="text-sixth">@ UC San Diego (Online)</span>
               </h3>
-              <p className="text-sm text-zinc-400 mt-1 mb-6">2024</p>
+              <p className="text-sm text-zinc-400 mt-1 mb-6">2025</p>
               <p className="relative pl-5 text-sm text-zinc-300 before:absolute before:top-0 before:left-0.5 before:content-['▹'] before:text-secondary">
                 <span className="text-secondary">Relevant Coursework:</span>{" "}
                 Deep Learning, Computer Vision and Image Processing, The Machine

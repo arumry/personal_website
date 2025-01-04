@@ -41,7 +41,7 @@ export default function Footer() {
       </div>
       <div>
         <p className="flex items-center flex-nowrap whitespace-nowrap">
-          Aaron Rumery &nbsp;<span className="text-fifth/80">&#123;&nbsp;"</span>Copyright<span className="text-fifth/80">": "</span>© 2024
+          Aaron Rumery &nbsp;<span className="text-fifth/80">&#123;&nbsp;"</span>Copyright<span className="text-fifth/80">": "</span>© 2025
             <span className="text-fifth/80"> "&nbsp;&#125;</span>
         </p>
       </div>
