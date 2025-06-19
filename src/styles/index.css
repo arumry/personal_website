@@ -234,8 +234,8 @@ code {
 }
 
 .fade-out {
-  animation: fade-out 0.7s ease-out forwards;
-  transition: display 4200ms;
+  animation: fade-out 0.2s ease-out forwards;
+  transition: display 1000ms;
   display: none;
 }
 
@@ -279,7 +279,7 @@ code {
   border-radius: 7px;
   background: #50AFEF;
   transition: 0.5s;
-  animation: loading_44 3s cubic-bezier(.4,1.01,1,1) forwards;
+  animation: loading_44 0.8s cubic-bezier(.25,.46,.45,.94) forwards;
 }
 
 @keyframes loading_44 {

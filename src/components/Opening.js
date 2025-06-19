@@ -4,7 +4,7 @@ export default function Opening({ Opening, setOpening }) {
   useEffect(() => {
     let danger = setTimeout(() => {
       setOpening(false);
-    }, 3000);
+    }, 800);
 
     return () => {
       clearTimeout(danger);
