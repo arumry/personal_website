@@ -1415,12 +1415,44 @@ code {
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgba(80, 175, 239, 0.2);
   cursor: pointer;
+  /* Ensure optimal touch target size */
+  min-width: 56px;
+  min-height: 56px;
 }
 
 .section-nav-link {
   touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.1);
+  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.15);
   cursor: pointer;
+  /* Enhanced touch feedback and accessibility */
+  position: relative;
+  overflow: hidden;
+  /* Ensure minimum touch target size for accessibility */
+  min-height: 48px;
+  /* Improve touch responsiveness */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* Enhanced active state feedback for section navigation links */
+.section-nav-link:active {
+  transform: scale(0.96) !important;
+  background-color: rgba(80, 175, 239, 0.2) !important;
+  transition: all 0.1s ease !important;
+}
+
+/* Specific enhancement for Contact Me link to ensure it works */
+.section-nav-link[href="#contact-section"] {
+  /* Ensure this link has proper touch handling */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.2);
+  position: relative;
+}
+
+/* Add subtle visual feedback for better UX */
+.section-nav-link:hover {
+  background-color: rgba(80, 175, 239, 0.1);
 }
 
 #mobile-menu-button {

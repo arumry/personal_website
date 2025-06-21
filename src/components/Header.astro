@@ -394,21 +394,74 @@ const { showSectionNav = false } = Astro.props;
         }
       });
 
-      // Shared navigation function for both click and touch events
-      const handleNavigation = () => {
-        // Don't prevent default for navigation links - let them navigate
+      // Enhanced touch interaction handling with intelligent gesture detection
+      let touchStartTime = 0;
+      let touchStartY = 0;
+      let touchMoved = false;
+
+      // Track touch start for gesture detection
+      link.addEventListener('touchstart', (e) => {
+        const touchEvent = e as TouchEvent;
+        touchStartTime = Date.now();
+        touchStartY = touchEvent.touches[0].clientY;
+        touchMoved = false;
+        e.stopPropagation(); // Prevent event bubbling
+      }, { passive: true });
+
+      // Track touch movement to distinguish taps from scrolls
+      link.addEventListener('touchmove', (e) => {
+        const touchEvent = e as TouchEvent;
+        const touchMoveY = touchEvent.touches[0].clientY;
+        const moveDistance = Math.abs(touchMoveY - touchStartY);
+
+        // If user moved more than 10px, consider it a scroll gesture
+        if (moveDistance > 10) {
+          touchMoved = true;
+        }
+      }, { passive: true });
+
+      // Enhanced navigation function with better touch handling
+      const handleNavigation = (e: Event) => {
+        const eventType = e.type;
+
+        // For touch events, apply intelligent gesture detection
+        if (eventType === 'touchend') {
+          const touchDuration = Date.now() - touchStartTime;
+
+          // Ignore if touch was too long (likely a scroll) or if touch moved significantly
+          if (touchDuration > 500 || touchMoved) {
+            return;
+          }
+
+          // Prevent default to avoid ghost clicks
+          e.preventDefault();
+        }
+
         // Close the section nav menu with animation
         closeMenu();
+
+        // For touch events, manually trigger navigation after a brief delay
+        // to ensure menu close animation doesn't interfere
+        if (eventType === 'touchend') {
+          setTimeout(() => {
+            const href = (link as HTMLAnchorElement).getAttribute('href');
+            if (href && href.startsWith('#')) {
+              const targetElement = document.querySelector(href);
+              if (targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }
+          }, 100);
+        }
+        // For click events, let default navigation behavior work
       };
 
       // Add both click and touch event listeners for navigation links
       link.addEventListener('click', handleNavigation);
-      link.addEventListener('touchend', handleNavigation);
-
-      // Prevent touch scrolling issues
-      link.addEventListener('touchstart', (e) => {
-        e.stopPropagation();
-      });
+      link.addEventListener('touchend', handleNavigation, { passive: false });
     });
   }
 
