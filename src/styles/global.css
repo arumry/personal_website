@@ -259,6 +259,26 @@ code {
   --nav-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Consistent scroll margins for all navigation target sections */
+/* This ensures proper scroll positioning that accounts for the fixed header */
+#introduction-section,
+#services-section,
+#experience-section,
+#contact-section {
+  /* Mobile scroll margin - matches BaseLayout main padding-top */
+  scroll-margin-top: 70px;
+}
+
+/* Desktop scroll margin - matches BaseLayout main padding-top */
+@media (min-width: 640px) {
+  #introduction-section,
+  #services-section,
+  #experience-section,
+  #contact-section {
+    scroll-margin-top: 80px;
+  }
+}
+
 /* Floating Action Button */
 .section-nav-fab {
   /* Positioning */
