@@ -125,85 +125,88 @@ const education = [
     <h2 class="text-zinc-500 w-full">&#47;&#47; Experience</h2>
 
     <!-- Mobile Card Layout (< 640px) -->
-    <div class="sm:hidden w-full mt-10 space-y-4">
+    <div class="sm:hidden w-full mt-10 space-y-6">
       <!-- Experience Cards -->
-      <div class="space-y-3">
-        <h3 class="text-tertiary text-sm font-medium px-1 before:content-['▹'] before:text-tertiary before:mr-2">
+      <div class="space-y-4">
+        <h3 class="text-tertiary text-base font-medium px-2 before:content-['▹'] before:text-tertiary before:mr-3">
           Experience
         </h3>
         {experiences.map((exp, index) => (
           <div
-            class="mobile-card bg-gradient-to-r from-primary-light/30 to-primary-light/10 backdrop-blur-sm border border-secondary/20 rounded-xl overflow-hidden transition-all duration-300"
+            class="mobile-card bg-gradient-to-r from-primary-light/30 to-primary-light/10 backdrop-blur-sm border border-secondary/20 rounded-2xl overflow-hidden transition-all duration-300 shadow-lg"
             data-card={exp.id}
           >
             <button
-              class="mobile-card-header w-full text-left p-4 flex items-center justify-between hover:bg-secondary/5 transition-colors duration-200 min-h-[60px]"
+              class="mobile-card-header w-full text-left px-5 py-4 flex items-center justify-between hover:bg-secondary/8 active:bg-secondary/12 transition-colors duration-200 min-h-[64px] focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:ring-inset"
               aria-expanded={index === 0 ? "true" : "false"}
               aria-controls={`mobile-card-content-${exp.id}`}
             >
-              <div class="flex-1 min-w-0">
-                <h4 class="text-white font-medium text-sm leading-tight">
+              <div class="flex-1 min-w-0 pr-4">
+                <h4 class="text-white font-semibold text-base leading-tight mb-1">
                   {exp.title}
                 </h4>
-                <p class="text-sixth text-xs mt-1 truncate">
+                <p class="text-sixth text-sm opacity-90">
                   @ {exp.company} {exp.location && `(${exp.location})`}
                 </p>
               </div>
-              <div class="ml-3 flex-shrink-0">
+              <div class="flex-shrink-0 flex items-center justify-center w-10 h-10">
                 <svg
-                  class="mobile-card-chevron w-5 h-5 text-secondary transition-transform duration-200"
+                  class={`mobile-card-chevron w-6 h-6 text-secondary transition-transform duration-300 ease-out ${index === 0 ? 'rotate-180' : 'rotate-0'}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  stroke-width="2.5"
                 >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </div>
             </button>
             <div
-              class={`mobile-card-content overflow-hidden transition-all duration-300 ${index === 0 ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
+              class={`mobile-card-content overflow-hidden transition-all duration-300 ease-out ${index === 0 ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
               id={`mobile-card-content-${exp.id}`}
               aria-hidden={index === 0 ? "false" : "true"}
             >
-              <div class="p-4 pt-0 border-t border-secondary/10">
-                <p class="text-sm text-zinc-400 mb-4">{exp.period}</p>
-                {exp.additionalRole && (
-                  <>
-                    <h5 class="text-white font-medium text-sm mb-1">{exp.additionalRole.title}</h5>
-                    <p class="text-sm text-zinc-400 mb-4">{exp.additionalRole.period}</p>
-                  </>
-                )}
-                {exp.additionalRoles && (
-                  <div class="space-y-3 mb-4">
-                    {exp.additionalRoles.map((role) => (
-                      <div>
-                        <h5 class="text-white font-medium text-sm">
-                          {role.title}
-                          <span class="text-sixth"> @ {role.company}</span>
-                        </h5>
-                        <p class="text-sm text-zinc-400">{role.period}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {exp.description.length > 0 && (
-                  <ul class="space-y-3 text-sm text-zinc-300 mb-4">
-                    {exp.description.map((item) => (
-                      <li class="relative pl-4 before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:bg-secondary before:rounded-full">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {exp.technologies.length > 0 && (
-                  <div class="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech) => (
-                      <span class="text-xs bg-secondary/30 text-secondary rounded px-2 py-1">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
+              <div class="px-5 pb-5 border-t border-secondary/10">
+                <div class="pt-5">
+                  <p class="text-sm text-zinc-400 mb-5 font-medium">{exp.period}</p>
+                  {exp.additionalRole && (
+                    <div class="mb-5">
+                      <h5 class="text-white font-semibold text-sm mb-2">{exp.additionalRole.title}</h5>
+                      <p class="text-sm text-zinc-400 font-medium">{exp.additionalRole.period}</p>
+                    </div>
+                  )}
+                  {exp.additionalRoles && (
+                    <div class="space-y-4 mb-5">
+                      {exp.additionalRoles.map((role) => (
+                        <div class="bg-primary-light/20 rounded-lg p-3">
+                          <h5 class="text-white font-semibold text-sm mb-1">
+                            {role.title}
+                            <span class="text-sixth font-normal"> @ {role.company}</span>
+                          </h5>
+                          <p class="text-sm text-zinc-400">{role.period}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {exp.description.length > 0 && (
+                    <ul class="space-y-4 text-sm text-zinc-300 mb-5 leading-relaxed">
+                      {exp.description.map((item) => (
+                        <li class="relative pl-5 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-secondary before:rounded-full">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {exp.technologies.length > 0 && (
+                    <div class="flex flex-wrap gap-2">
+                      {exp.technologies.map((tech) => (
+                        <span class="text-xs bg-secondary/30 text-secondary rounded-lg px-3 py-1.5 font-medium">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -211,51 +214,56 @@ const education = [
       </div>
 
       <!-- Education Cards -->
-      <div class="space-y-3 mt-8">
-        <h3 class="text-tertiary text-sm font-medium px-1 before:content-['▹'] before:text-tertiary before:mr-2">
+      <div class="space-y-4">
+        <h3 class="text-tertiary text-base font-medium px-2 before:content-['▹'] before:text-tertiary before:mr-3">
           Education
         </h3>
-        {education.map((edu, index) => (
+        {education.map((edu) => (
           <div
-            class="mobile-card bg-gradient-to-r from-primary-light/30 to-primary-light/10 backdrop-blur-sm border border-secondary/20 rounded-xl overflow-hidden transition-all duration-300"
+            class="mobile-card bg-gradient-to-r from-primary-light/30 to-primary-light/10 backdrop-blur-sm border border-secondary/20 rounded-2xl overflow-hidden transition-all duration-300 shadow-lg"
             data-card={edu.id}
           >
             <button
-              class="mobile-card-header w-full text-left p-4 flex items-center justify-between hover:bg-secondary/5 transition-colors duration-200 min-h-[60px]"
+              class="mobile-card-header w-full text-left px-5 py-4 flex items-center justify-between hover:bg-secondary/8 active:bg-secondary/12 transition-colors duration-200 min-h-[64px] focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:ring-inset"
               aria-expanded="false"
               aria-controls={`mobile-card-content-${edu.id}`}
             >
-              <div class="flex-1 min-w-0">
-                <h4 class="text-white font-medium text-sm leading-tight">
+              <div class="flex-1 min-w-0 pr-4">
+                <h4 class="text-white font-semibold text-base leading-tight mb-1">
                   {edu.title}
                 </h4>
-                <p class="text-sixth text-xs mt-1 truncate">
+                <p class="text-sixth text-sm opacity-90">
                   @ {edu.institution} {edu.location && `(${edu.location})`}
                 </p>
               </div>
-              <div class="ml-3 flex-shrink-0">
+              <div class="flex-shrink-0 flex items-center justify-center w-10 h-10">
                 <svg
-                  class="mobile-card-chevron w-5 h-5 text-secondary transition-transform duration-200"
+                  class="mobile-card-chevron w-6 h-6 text-secondary transition-transform duration-300 ease-out rotate-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  stroke-width="2.5"
                 >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </div>
             </button>
             <div
-              class="mobile-card-content overflow-hidden transition-all duration-300 max-h-0 opacity-0"
+              class="mobile-card-content overflow-hidden transition-all duration-300 ease-out max-h-0 opacity-0"
               id={`mobile-card-content-${edu.id}`}
               aria-hidden="true"
             >
-              <div class="p-4 pt-0 border-t border-secondary/10">
-                <p class="text-sm text-zinc-400 mb-4">{edu.period}</p>
-                {edu.coursework && (
-                  <p class="relative pl-4 text-sm text-zinc-300 before:absolute before:top-0 before:left-0 before:content-['▹'] before:text-secondary">
-                    <span class="text-secondary">Relevant Coursework:</span> {edu.coursework}
-                  </p>
-                )}
+              <div class="px-5 pb-5 border-t border-secondary/10">
+                <div class="pt-5">
+                  <p class="text-sm text-zinc-400 mb-5 font-medium">{edu.period}</p>
+                  {edu.coursework && (
+                    <div class="bg-primary-light/20 rounded-lg p-4">
+                      <p class="text-sm text-zinc-300 leading-relaxed">
+                        <span class="text-secondary font-semibold">Relevant Coursework:</span> {edu.coursework}
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -637,7 +645,7 @@ const education = [
     return isMobile;
   }
 
-  // Mobile accordion functionality
+  // Mobile accordion functionality with intelligent touch detection
   function initMobileAccordion() {
     mobileCards.forEach((card) => {
       const header = card.querySelector('.mobile-card-header') as HTMLElement;
@@ -645,10 +653,20 @@ const education = [
       const chevron = card.querySelector('.mobile-card-chevron') as HTMLElement;
 
       if (header && content && chevron) {
-        // Shared toggle function for both click and touch events
-        const toggleCard = (e: Event) => {
-          e.preventDefault(); // Prevent any default behavior
+        // Touch gesture tracking variables
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchStartTime = 0;
+        let isTouchMove = false;
+        let touchMoveDistance = 0;
 
+        // Thresholds for gesture detection
+        const MOVEMENT_THRESHOLD = 10; // pixels
+        const TIME_THRESHOLD = 150; // milliseconds
+        const SCROLL_THRESHOLD = 15; // pixels for scroll detection
+
+        // Shared toggle function for accordion expansion
+        const toggleCard = () => {
           const isExpanded = header.getAttribute('aria-expanded') === 'true';
 
           // Close all other cards
@@ -663,7 +681,8 @@ const education = [
                 otherContent.setAttribute('aria-hidden', 'true');
                 otherContent.classList.remove('max-h-screen', 'opacity-100');
                 otherContent.classList.add('max-h-0', 'opacity-0');
-                otherChevron.style.transform = 'rotate(0deg)';
+                otherChevron.classList.remove('rotate-180');
+                otherChevron.classList.add('rotate-0');
               }
             }
           });
@@ -674,31 +693,108 @@ const education = [
             content.setAttribute('aria-hidden', 'true');
             content.classList.remove('max-h-screen', 'opacity-100');
             content.classList.add('max-h-0', 'opacity-0');
-            chevron.style.transform = 'rotate(0deg)';
+            chevron.classList.remove('rotate-180');
+            chevron.classList.add('rotate-0');
           } else {
             header.setAttribute('aria-expanded', 'true');
             content.setAttribute('aria-hidden', 'false');
             content.classList.remove('max-h-0', 'opacity-0');
             content.classList.add('max-h-screen', 'opacity-100');
-            chevron.style.transform = 'rotate(180deg)';
+            chevron.classList.remove('rotate-0');
+            chevron.classList.add('rotate-180');
           }
         };
 
-        // Add both click and touch event listeners for maximum compatibility
-        header.addEventListener('click', toggleCard);
-        header.addEventListener('touchend', toggleCard);
+        // Touch start handler - record initial touch position and time
+        const handleTouchStart = (e: TouchEvent) => {
+          const touch = e.touches[0];
+          touchStartX = touch.clientX;
+          touchStartY = touch.clientY;
+          touchStartTime = Date.now();
+          isTouchMove = false;
+          touchMoveDistance = 0;
 
-        // Add keyboard support
+          // Add visual feedback for potential tap
+          header.classList.add('touch-active');
+        };
+
+        // Touch move handler - track movement to detect scrolling intent
+        const handleTouchMove = (e: TouchEvent) => {
+          const touch = e.touches[0];
+          const deltaX = Math.abs(touch.clientX - touchStartX);
+          const deltaY = Math.abs(touch.clientY - touchStartY);
+
+          // Calculate total movement distance
+          touchMoveDistance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+          // If movement exceeds scroll threshold, mark as scroll gesture and remove visual feedback
+          if (touchMoveDistance > SCROLL_THRESHOLD) {
+            isTouchMove = true;
+            header.classList.remove('touch-active');
+          }
+        };
+
+        // Touch end handler - determine if this was a tap or scroll gesture
+        const handleTouchEnd = (e: TouchEvent) => {
+          e.preventDefault(); // Prevent default touch behavior
+
+          const touchEndTime = Date.now();
+          const touchDuration = touchEndTime - touchStartTime;
+
+          // Determine if this was an intentional tap:
+          // 1. Movement distance is below threshold (not a scroll)
+          // 2. Touch duration is reasonable (not too long)
+          // 3. No significant movement was detected during the gesture
+          const isIntentionalTap =
+            touchMoveDistance <= MOVEMENT_THRESHOLD &&
+            touchDuration <= TIME_THRESHOLD &&
+            !isTouchMove;
+
+          // Only toggle if this was clearly an intentional tap
+          if (isIntentionalTap) {
+            toggleCard();
+          }
+
+          // Always remove visual feedback and reset tracking variables
+          header.classList.remove('touch-active');
+          touchStartX = 0;
+          touchStartY = 0;
+          touchStartTime = 0;
+          isTouchMove = false;
+          touchMoveDistance = 0;
+        };
+
+        // Desktop click handler (for mouse/trackpad)
+        const handleClick = (e: MouseEvent) => {
+          e.preventDefault();
+          toggleCard();
+        };
+
+        // Touch cancel handler - clean up if touch is interrupted
+        const handleTouchCancel = () => {
+          header.classList.remove('touch-active');
+          touchStartX = 0;
+          touchStartY = 0;
+          touchStartTime = 0;
+          isTouchMove = false;
+          touchMoveDistance = 0;
+        };
+
+        // Add touch event listeners for intelligent gesture detection
+        header.addEventListener('touchstart', handleTouchStart, { passive: true });
+        header.addEventListener('touchmove', handleTouchMove, { passive: true });
+        header.addEventListener('touchend', handleTouchEnd, { passive: false });
+        header.addEventListener('touchcancel', handleTouchCancel, { passive: true });
+
+        // Add click handler for desktop/mouse interactions
+        header.addEventListener('click', handleClick);
+
+        // Add keyboard support for accessibility
         header.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            toggleCard(e);
+            toggleCard();
           }
-        });
-
-        // Prevent touch scrolling issues
-        header.addEventListener('touchstart', (e) => {
-          e.stopPropagation();
         });
       }
     });
