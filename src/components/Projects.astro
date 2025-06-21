@@ -218,10 +218,36 @@ import Gallery from './Gallery.astro';
   if (carsProject) carsObserver.observe(carsProject);
   if (zefrProject) zefrObserver.observe(zefrProject);
 
-  function openGallery(galleryId: string) {
-    const openFunc = (window as any)[`openGallery_${galleryId}`];
-    if (openFunc && typeof openFunc === 'function') {
-      openFunc();
+  function openGallery(galleryId: string, event?: Event) {
+    // Prevent default behavior to avoid navigation in Safari
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    // Wait for PhotoSwipe to be ready before attempting to open gallery
+    const attemptOpen = () => {
+      const openFunc = (window as any)[`openGallery_${galleryId}`];
+      if (openFunc && typeof openFunc === 'function') {
+        openFunc();
+      }
+    };
+
+    // Check if PhotoSwipe is ready, if not wait a bit
+    if ((window as any).photoSwipeReady) {
+      attemptOpen();
+    } else {
+      // Wait up to 1 second for PhotoSwipe to initialize
+      let attempts = 0;
+      const checkReady = () => {
+        if ((window as any).photoSwipeReady || attempts > 10) {
+          attemptOpen();
+        } else {
+          attempts++;
+          setTimeout(checkReady, 100);
+        }
+      };
+      checkReady();
     }
   }
 
@@ -230,13 +256,13 @@ import Gallery from './Gallery.astro';
   const zefrBtn = document.getElementById('zefr-gallery-btn');
 
   if (krakenBtn) {
-    krakenBtn.addEventListener('click', () => openGallery('kraken-gallery'));
+    krakenBtn.addEventListener('click', (e) => openGallery('kraken-gallery', e));
   }
   if (carsBtn) {
-    carsBtn.addEventListener('click', () => openGallery('cars-gallery'));
+    carsBtn.addEventListener('click', (e) => openGallery('cars-gallery', e));
   }
   if (zefrBtn) {
-    zefrBtn.addEventListener('click', () => openGallery('zefr-gallery'));
+    zefrBtn.addEventListener('click', (e) => openGallery('zefr-gallery', e));
   }
 
   const krakenGallery = document.getElementById('kraken-gallery');
@@ -244,12 +270,12 @@ import Gallery from './Gallery.astro';
   const zefrGallery = document.getElementById('zefr-gallery');
 
   if (krakenGallery) {
-    krakenGallery.addEventListener('click', () => openGallery('kraken-gallery'));
+    krakenGallery.addEventListener('click', (e) => openGallery('kraken-gallery', e));
   }
   if (carsGallery) {
-    carsGallery.addEventListener('click', () => openGallery('cars-gallery'));
+    carsGallery.addEventListener('click', (e) => openGallery('cars-gallery', e));
   }
   if (zefrGallery) {
-    zefrGallery.addEventListener('click', () => openGallery('zefr-gallery'));
+    zefrGallery.addEventListener('click', (e) => openGallery('zefr-gallery', e));
   }
 </script>
