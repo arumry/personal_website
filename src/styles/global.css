@@ -1455,6 +1455,19 @@ code {
   user-select: none;
 }
 
+/* Mobile-first touch optimization for all navigation links */
+.section-nav-link {
+  /* Ensure minimum touch target size (44px minimum) */
+  min-height: 48px;
+  min-width: 48px;
+  /* Optimize touch interactions */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.2);
+  position: relative;
+  /* Prevent hover states on touch devices */
+  cursor: pointer;
+}
+
 /* Enhanced active state feedback for section navigation links */
 .section-nav-link:active {
   transform: scale(0.96) !important;
@@ -1462,23 +1475,154 @@ code {
   transition: all 0.1s ease !important;
 }
 
-/* Specific enhancement for Contact Me link to ensure it works */
-.section-nav-link[href="#contact-section"] {
-  /* Ensure this link has proper touch handling */
+/* Mobile touch optimization class */
+.mobile-touch-optimized {
+  /* Ensure proper touch handling on mobile devices */
   touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.2);
+  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.3);
+  /* Prevent text selection on touch */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Ensure proper z-index for touch events */
   position: relative;
+  z-index: 1;
 }
 
-/* Add subtle visual feedback for better UX */
-.section-nav-link:hover {
+/* Only apply hover effects on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+  .section-nav-link:hover {
+    background-color: rgba(80, 175, 239, 0.1);
+    color: #50afef;
+  }
+
+  .section-nav-link:hover svg {
+    transform: scale(1.1);
+  }
+}
+
+/* Focus states using :focus-visible for better mobile UX */
+.section-nav-link:focus-visible {
+  outline: 2px solid #50afef;
+  outline-offset: 2px;
   background-color: rgba(80, 175, 239, 0.1);
+}
+
+/* Remove default focus outline on mobile touch devices */
+.section-nav-link:focus:not(:focus-visible) {
+  outline: none;
 }
 
 #mobile-menu-button {
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgba(80, 175, 239, 0.1);
   cursor: pointer;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+/* Fix mobile focus states globally - prevent unwanted blue borders */
+*:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #50afef;
+  outline-offset: 2px;
+}
+
+/* Specifically target common elements that show blue borders on mobile */
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+div:focus:not(:focus-visible),
+section:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Remove webkit tap highlight on all interactive elements */
+input,
+textarea,
+button,
+a,
+[role="button"],
+[tabindex] {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection for input fields and content areas */
+input[type="text"],
+input[type="email"],
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Prevent blue highlight on sections and containers */
+section,
+div,
+main,
+article,
+aside,
+header,
+footer,
+nav {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure introduction section doesn't get blue border */
+#introduction-section,
+#introduction-section *,
+.hero-content,
+.hero-content * {
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove focus from non-interactive elements */
+section:focus,
+div:focus,
+main:focus,
+article:focus,
+aside:focus,
+header:focus,
+footer:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Mobile focus safety class - prevents any focus-related styling */
+.mobile-focus-safe,
+.mobile-focus-safe:focus,
+.mobile-focus-safe:focus-visible,
+.mobile-focus-safe:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Ensure all children of mobile-focus-safe sections don't get unwanted focus */
+.mobile-focus-safe *:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 /* Mobile Header Alignment Fixes */

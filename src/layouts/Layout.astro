@@ -2,9 +2,58 @@
 export interface Props {
   title: string;
   description?: string;
+  keywords?: string;
+  image?: string;
+  url?: string;
+  type?: string;
+  author?: string;
+  canonical?: string;
 }
 
-const { title, description = "Aaron Rumery - Senior Software Engineer" } = Astro.props;
+const {
+  title,
+  description,
+  keywords,
+  image = "/me.jpg",
+  url = Astro.url.href,
+  type,
+  author = "Aaron Rumery",
+  canonical = Astro.url.href
+} = Astro.props;
+
+// Detect page type based on URL path
+const currentPath = Astro.url.pathname;
+const isHomePage = currentPath === '/';
+const isBlogPage = currentPath.startsWith('/blog');
+const isBlogPost = currentPath.startsWith('/blog/') && currentPath !== '/blog/';
+
+// Dynamic defaults based on page type
+const defaultDescription = isHomePage
+  ? "Senior Software Engineer with 10+ years experience in full-stack development, system architecture, and modern technologies including Rust, Python, Elixir, and Node.js. Specializing in scalable systems and innovative solutions."
+  : isBlogPage && !isBlogPost
+  ? "Technical blog posts about software engineering, system architecture, and development best practices by Aaron Rumery, Senior Software Engineer."
+  : isBlogPost
+  ? "Technical insights and software engineering expertise from Aaron Rumery, Senior Software Engineer with 10+ years experience."
+  : "Aaron Rumery - Senior Software Engineer specializing in full-stack development and system architecture.";
+
+const defaultKeywords = isHomePage
+  ? "Aaron Rumery, Senior Software Engineer, full-stack development, system architecture, Rust, Python, Elixir, Node.js, JavaScript, TypeScript, backend development, scalable systems, software engineering, web development, portfolio"
+  : isBlogPage
+  ? "Aaron Rumery, software engineering blog, technical articles, system architecture, programming tutorials, development best practices, Rust, Python, Elixir, Node.js"
+  : "Aaron Rumery, Senior Software Engineer, software development, programming, technology";
+
+const defaultType = isHomePage ? "website" : isBlogPost ? "article" : "website";
+
+// Use provided values or defaults
+const finalDescription = description || defaultDescription;
+const finalKeywords = keywords || defaultKeywords;
+const finalType = type || defaultType;
+
+// Ensure absolute URLs for social sharing
+const baseUrl = "https://aaronrumery.com";
+const absoluteUrl = url.startsWith('http') ? url : `${baseUrl}${url.startsWith('/') ? url : `/${url}`}`;
+const absoluteImage = image.startsWith('http') ? image : `${baseUrl}${image}`;
+const absoluteCanonical = canonical.startsWith('http') ? canonical : `${baseUrl}${canonical.startsWith('/') ? canonical : `/${canonical}`}`;
 
 import '../styles/global.css';
 ---
@@ -13,20 +62,119 @@ import '../styles/global.css';
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
 
-    <!-- Preconnect to Google Fonts -->
+    <!-- Core SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={finalDescription} />
+    <meta name="keywords" content={finalKeywords} />
+    <meta name="author" content={author} />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href={absoluteCanonical} />
+
+    <!-- Viewport and Mobile Optimization -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#333646" />
+
+    <!-- Open Graph Protocol -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={finalDescription} />
+    <meta property="og:image" content={absoluteImage} />
+    <meta property="og:url" content={absoluteUrl} />
+    <meta property="og:type" content={finalType} />
+    <meta property="og:site_name" content="Aaron Rumery - Senior Software Engineer" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={finalDescription} />
+    <meta name="twitter:image" content={absoluteImage} />
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/gif" href="/code.gif" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/me.jpg" />
+    <link rel="mask-icon" href="/favicon.svg" color="#333646" />
+
+    <!-- Technical Meta Tags -->
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Performance Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,500;1,100&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:ital,wght@0,500;1,100&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": {isBlogPost ? '"Article"' : '"Person"'},
+        {isBlogPost ? `
+        "headline": "${title}",
+        "description": "${finalDescription}",
+        "author": {
+          "@type": "Person",
+          "name": "Aaron Rumery",
+          "jobTitle": "Senior Software Engineer",
+          "url": "https://aaronrumery.com"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Aaron Rumery",
+          "url": "https://aaronrumery.com"
+        },
+        "url": "${absoluteUrl}",
+        "image": "${absoluteImage}",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "${absoluteUrl}"
+        }` : `
+        "name": "Aaron Rumery",
+        "jobTitle": "Senior Software Engineer",
+        "description": "${finalDescription}",
+        "url": "https://aaronrumery.com",
+        "image": "https://aaronrumery.com/me.jpg",
+        "sameAs": [
+          "https://www.linkedin.com/in/arumery/",
+          "https://github.com/arumry"
+        ],
+        "knowsAbout": [
+          "Rust",
+          "Python",
+          "Elixir",
+          "Node.js",
+          "JavaScript",
+          "TypeScript",
+          "System Architecture",
+          "Full Stack Development",
+          "Backend Development",
+          "Scalable Systems",
+          "Software Engineering",
+          "Web Development",
+          "React",
+          "Angular",
+          "Express.js",
+          "Phoenix",
+          "PostgreSQL",
+          "MongoDB",
+          "AWS",
+          "Docker",
+          "Kubernetes"
+        ],
+        "alumniOf": "Utah Valley University",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "US"
+        }`}
+      }
+    </script>
   </head>
   <body class="w-full flex flex-col items-center bg-primary">
     <slot />
