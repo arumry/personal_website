@@ -260,11 +260,11 @@ const { showSectionNav = false } = Astro.props;
       }
     });
 
-    // Handle navigation links
+    // Handle navigation links with simple, reliable click handling
     const navLinks = sectionNavMenu.querySelectorAll('.section-nav-link');
     navLinks.forEach((link, index) => {
-      // Handle navigation with explicit scroll implementation
-      const handleLinkActivation = (e: Event) => {
+      // Simple navigation function
+      const handleNavigation = (e: Event) => {
         e.preventDefault(); // Prevent default anchor behavior
 
         if (sectionNavToggle.getAttribute('aria-expanded') === 'true') {
@@ -287,21 +287,33 @@ const { showSectionNav = false } = Astro.props;
               }, 300); // Match the nav-transition duration
             }
           }
-
-          // Clear any persistent focus states on touch devices
-          if (e.type === 'touchend' || e.type === 'touchstart') {
-            setTimeout(() => {
-              (link as HTMLElement).blur();
-              // Force removal of any webkit focus artifacts
-              (link as HTMLElement).style.outline = 'none';
-              (link as HTMLElement).style.backgroundColor = 'transparent';
-            }, 50);
-          }
         }
       };
 
-      link.addEventListener('click', handleLinkActivation);
-      link.addEventListener('touchend', handleLinkActivation);
+      // Single click event listener with mobile browser optimizations
+      link.addEventListener('click', handleNavigation);
+
+      // Mobile browser compatibility enhancements
+      const linkElement = link as HTMLElement;
+
+      // Prevent iOS Safari from showing the callout menu
+      (linkElement.style as any).webkitTouchCallout = 'none';
+
+      // Ensure proper touch action for mobile browsers
+      linkElement.style.touchAction = 'manipulation';
+
+      // Clear any persistent focus states on touch devices
+      link.addEventListener('touchstart', () => {
+        (link as HTMLElement).style.outline = 'none';
+        (link as HTMLElement).style.backgroundColor = 'transparent';
+      }, { passive: true });
+
+      // Clear focus after touch interaction completes
+      link.addEventListener('touchend', () => {
+        setTimeout(() => {
+          (link as HTMLElement).blur();
+        }, 50);
+      }, { passive: true });
 
       // Keyboard navigation within menu
       link.addEventListener('keydown', (e) => {
@@ -318,14 +330,11 @@ const { showSectionNav = false } = Astro.props;
           keyEvent.preventDefault();
           toggleMenu();
           sectionNavToggle.focus();
+        } else if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+          keyEvent.preventDefault();
+          handleNavigation(keyEvent);
         }
       });
-
-      // Clear focus artifacts on touch start
-      link.addEventListener('touchstart', () => {
-        (link as HTMLElement).style.outline = 'none';
-        (link as HTMLElement).style.backgroundColor = 'transparent';
-      }, { passive: true });
     });
   }
 
