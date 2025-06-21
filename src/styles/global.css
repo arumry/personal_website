@@ -248,17 +248,293 @@ code {
   }
 }
 
-/* Enhanced FAB animations */
-.fab-pulse {
+/* Modern Section Navigation - 2024 Implementation */
+.section-nav {
+  /* CSS custom properties for consistent theming */
+  --nav-primary: #333646;
+  --nav-secondary: #50afef;
+  --nav-bg: rgba(51, 54, 70, 0.95);
+  --nav-border: rgba(80, 175, 239, 0.3);
+  --nav-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --nav-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Floating Action Button */
+.section-nav-fab {
+  /* Positioning */
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 9999;
+
+  /* Size - Mobile-first with 48px minimum touch target */
+  width: 3.5rem;
+  height: 3.5rem;
+
+  /* Styling */
+  background: linear-gradient(135deg, var(--nav-secondary), #4a9eff);
+  border: 1px solid rgba(80, 175, 239, 0.2);
+  border-radius: 1rem;
+  color: var(--nav-primary);
+
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Interactions */
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Animations */
+  transition: var(--nav-transition);
+  box-shadow: var(--nav-shadow);
+
+  /* Pulse animation */
   animation: fab-pulse 3s ease-in-out infinite;
 }
 
+/* Responsive sizing for larger screens */
+@media (min-width: 640px) {
+  .section-nav-fab {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+/* FAB hover and active states */
+@media (hover: hover) and (pointer: fine) {
+  .section-nav-fab:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #61c5f7, #50afef);
+    box-shadow: 0 25px 50px rgba(80, 175, 239, 0.4);
+  }
+}
+
+.section-nav-fab:active {
+  transform: scale(0.95);
+}
+
+.section-nav-fab--active {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #61c5f7, #50afef);
+  animation: none; /* Stop pulse when active */
+}
+
+/* FAB Icon */
+.section-nav-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: var(--nav-transition);
+}
+
+@media (min-width: 640px) {
+  .section-nav-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+.section-nav-fab--active .section-nav-icon {
+  /* Terminal activity animation - simulates active code execution with cursor blinking effect */
+  animation: terminal-active 1.5s ease-in-out infinite;
+  transform: scale(1.1);
+}
+
+/* Respect user's motion preferences for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .section-nav-fab--active .section-nav-icon {
+    animation: none;
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 3px var(--nav-secondary));
+  }
+}
+
+/* Pulse animation */
 @keyframes fab-pulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(80, 175, 239, 0.4);
+    box-shadow: var(--nav-shadow), 0 0 0 0 rgba(80, 175, 239, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(80, 175, 239, 0);
+    box-shadow: var(--nav-shadow), 0 0 0 10px rgba(80, 175, 239, 0);
+  }
+}
+
+/* Terminal activity animation - simulates active code execution with cursor blinking */
+@keyframes terminal-active {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 2px var(--nav-secondary));
+  }
+  20% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 1px var(--nav-secondary));
+  }
+  40% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px var(--nav-secondary));
+  }
+  60% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 6px var(--nav-secondary));
+  }
+  80% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 3px var(--nav-secondary));
+  }
+}
+
+/* Navigation Menu */
+.section-nav-menu {
+  /* Positioning */
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1rem;
+  z-index: 9998;
+
+  /* Size */
+  min-width: 12.5rem;
+  max-width: calc(100vw - 2rem);
+
+  /* Styling */
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--nav-border);
+  border-radius: 1rem;
+  box-shadow: var(--nav-shadow);
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+
+  /* Initial state - hidden */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8) translateY(1rem);
+  transform-origin: bottom right;
+
+  /* Animations */
+  transition: var(--nav-transition);
+}
+
+/* Responsive positioning */
+@media (min-width: 640px) {
+  .section-nav-menu {
+    bottom: 7rem;
+    right: 1.5rem;
+    min-width: 14rem;
+  }
+}
+
+/* Menu open state */
+.section-nav-menu--open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+}
+
+/* Navigation Links */
+.section-nav-link {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  /* Size - 48px minimum touch target */
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+
+  /* Styling */
+  color: white;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  font-family: 'Fira Code', 'Roboto Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  /* Interactions */
+  cursor: pointer;
+  touch-action: manipulation;
+
+  /* Mobile touch optimization - prevent persistent highlights */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+  /* Animations */
+  transition: var(--nav-transition);
+}
+
+/* Responsive sizing */
+@media (min-width: 640px) {
+  .section-nav-link {
+    min-height: 3.25rem;
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* Link icons */
+.section-nav-link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  transition: var(--nav-transition);
+}
+
+/* Link hover states - only on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+  .section-nav-link:hover {
+    background-color: rgba(80, 175, 239, 0.1);
+    color: var(--nav-secondary);
+    transform: translateX(0.25rem);
+  }
+
+  .section-nav-link:hover svg {
+    transform: scale(1.1);
+  }
+}
+
+/* Link active state */
+.section-nav-link:active {
+  transform: scale(0.98);
+  background-color: rgba(80, 175, 239, 0.2);
+}
+
+/* Focus states for accessibility */
+.section-nav-link:focus-visible {
+  outline: 2px solid var(--nav-secondary);
+  outline-offset: 2px;
+  background-color: rgba(80, 175, 239, 0.1);
+}
+
+/* Remove all focus artifacts on touch devices */
+.section-nav-link:focus:not(:focus-visible) {
+  outline: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Ensure no persistent touch states on mobile */
+@media (pointer: coarse) {
+  .section-nav-link:focus,
+  .section-nav-link:active {
+    outline: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Only show brief touch feedback during actual touch */
+  .section-nav-link:active {
+    background-color: rgba(80, 175, 239, 0.1) !important;
+    transition: background-color 0.1s ease !important;
   }
 }
 
@@ -1430,50 +1706,9 @@ code {
   }
 }
 
-/* Enhanced Touch Support for Navigation Elements */
-#section-nav-toggle {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.2);
-  cursor: pointer;
-  /* Ensure optimal touch target size */
-  min-width: 56px;
-  min-height: 56px;
-}
+/* Legacy styles removed - using modern section-nav classes */
 
-.section-nav-link {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.15);
-  cursor: pointer;
-  /* Enhanced touch feedback and accessibility */
-  position: relative;
-  overflow: hidden;
-  /* Ensure minimum touch target size for accessibility */
-  min-height: 48px;
-  /* Improve touch responsiveness */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-/* Mobile-first touch optimization for all navigation links */
-.section-nav-link {
-  /* Ensure minimum touch target size (44px minimum) */
-  min-height: 48px;
-  min-width: 48px;
-  /* Optimize touch interactions */
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.2);
-  position: relative;
-  /* Prevent hover states on touch devices */
-  cursor: pointer;
-}
-
-/* Enhanced active state feedback for section navigation links */
-.section-nav-link:active {
-  transform: scale(0.96) !important;
-  background-color: rgba(80, 175, 239, 0.2) !important;
-  transition: all 0.1s ease !important;
-}
+/* Legacy section-nav-link styles removed - conflicts resolved */
 
 /* Mobile touch optimization class */
 .mobile-touch-optimized {
@@ -1502,17 +1737,7 @@ code {
   }
 }
 
-/* Focus states using :focus-visible for better mobile UX */
-.section-nav-link:focus-visible {
-  outline: 2px solid #50afef;
-  outline-offset: 2px;
-  background-color: rgba(80, 175, 239, 0.1);
-}
-
-/* Remove default focus outline on mobile touch devices */
-.section-nav-link:focus:not(:focus-visible) {
-  outline: none;
-}
+/* Legacy focus styles removed - using modern implementation */
 
 #mobile-menu-button {
   touch-action: manipulation;

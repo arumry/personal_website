@@ -95,92 +95,81 @@ const { showSectionNav = false } = Astro.props;
   </ul>
 
 <!-- Section Navigation Menu (Only visible when showSectionNav is true) -->
-<div id="section-nav-container" class={showSectionNav ? "" : "hidden"}>
-  <!-- Modern Floating Action Button for Section Navigation - Responsive -->
+<nav id="section-nav-container" class={showSectionNav ? "section-nav" : "hidden"} aria-label="Section navigation">
+  <!-- Simplified Floating Action Button -->
   <button
     id="section-nav-toggle"
-    class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999] w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-secondary to-blue-500 hover:from-tertiary hover:to-yellow-400 text-primary rounded-2xl shadow-2xl hover:shadow-[0_20px_40px_rgba(80,175,239,0.3)] transition-all duration-500 flex items-center justify-center group transform hover:scale-105 active:scale-95 border border-secondary/20 backdrop-blur-sm touch-manipulation fab-pulse"
-    aria-label="Navigate to sections"
+    class="section-nav-fab"
+    type="button"
+    aria-label="Open section navigation menu"
     aria-expanded="false"
+    aria-controls="section-nav-menu"
+    aria-haspopup="menu"
   >
-    <!-- Code brackets icon with enhanced animation -->
-    <div class="relative">
-      <svg
-        id="fab-icon"
-        class="w-6 h-6 sm:w-7 sm:h-7 transition-all duration-500 group-hover:scale-110"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        stroke-width="2.5"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M8 9l3 3-3 3m5 0h3"
-          class="transition-all duration-500 group-hover:stroke-[3]"
-        />
-      </svg>
-      <!-- Enhanced glow effect for activation state -->
-      <div
-        id="fab-glow"
-        class="absolute inset-0 bg-secondary/30 rounded-full blur-md opacity-0 transition-all duration-500"
-      ></div>
-    </div>
+    <!-- Code brackets icon -->
+    <svg
+      class="section-nav-icon"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3"></path>
+    </svg>
   </button>
 
-  <!-- Enhanced Section Navigation Menu - Responsive -->
+  <!-- Simplified Section Navigation Menu -->
   <div
     id="section-nav-menu"
-    class="fixed bottom-20 right-4 sm:bottom-28 sm:right-6 z-[9998] bg-primary_light/95 backdrop-blur-md border border-secondary/30 rounded-2xl shadow-2xl p-3 min-w-[200px] sm:min-w-[220px] max-w-[calc(100vw-2rem)] transform scale-0 origin-bottom-right transition-all duration-500"
+    class="section-nav-menu"
+    role="menu"
+    aria-labelledby="section-nav-toggle"
   >
-    <nav class="flex flex-col gap-1">
-      <!-- Introduction - Terminal/Console icon -->
-      <a href="#introduction-section" class="section-nav-link flex items-center gap-3 min-h-[48px] sm:min-h-[52px] px-3 sm:px-4 py-3 text-white hover:text-secondary hover:bg-primary/50 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary_light group touch-manipulation" style="transform: translateX(20px) scale(0.95); opacity: 0.7;">
-        <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3"></path>
-        </svg>
-        <span class="text-sm font-medium code-font">./introduction</span>
-      </a>
+    <!-- Introduction -->
+    <a href="#introduction-section" class="section-nav-link" role="menuitem">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3"></path>
+      </svg>
+      <span>./introduction</span>
+    </a>
 
-      <!-- Services - Code/Function icon -->
-      <a href="#services-section" class="section-nav-link flex items-center gap-3 min-h-[48px] sm:min-h-[52px] px-3 sm:px-4 py-3 text-white hover:text-secondary hover:bg-primary/50 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary_light group touch-manipulation" style="transform: translateX(20px) scale(0.95); opacity: 0.7;">
-        <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-        </svg>
-        <span class="text-sm font-medium code-font">services()</span>
-      </a>
+    <!-- Services -->
+    <a href="#services-section" class="section-nav-link" role="menuitem">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+      </svg>
+      <span>services()</span>
+    </a>
 
-      <!-- Experience - User/Developer icon -->
-      <a href="#experience-section" class="section-nav-link flex items-center gap-3 min-h-[48px] sm:min-h-[52px] px-3 sm:px-4 py-3 text-white hover:text-secondary hover:bg-primary/50 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary_light group touch-manipulation" style="transform: translateX(20px) scale(0.95); opacity: 0.7;">
-        <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-        </svg>
-        <span class="text-sm font-medium code-font">my_experience</span>
-      </a>
+    <!-- Experience -->
+    <a href="#experience-section" class="section-nav-link" role="menuitem">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+      </svg>
+      <span>my_experience</span>
+    </a>
 
-      <!-- Projects - Git branch/Repository icon -->
-      <a href="#projects-section" class="section-nav-link flex items-center gap-3 min-h-[48px] sm:min-h-[52px] px-3 sm:px-4 py-3 text-white hover:text-secondary hover:bg-primary/50 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary_light group touch-manipulation" style="transform: translateX(20px) scale(0.95); opacity: 0.7;">
-        <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-        </svg>
-        <span class="text-sm font-medium code-font">projects[]</span>
-      </a>
+    <!-- Projects -->
+    <a href="#projects-section" class="section-nav-link" role="menuitem">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+      </svg>
+      <span>projects[]</span>
+    </a>
 
-      <!-- Contact - Mail/Communication icon -->
-      <a href="#contact-section" class="section-nav-link flex items-center gap-3 min-h-[48px] sm:min-h-[52px] px-3 sm:px-4 py-3 text-white rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary_light group touch-manipulation mobile-touch-optimized" data-nav-link="contact">
-        <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-        </svg>
-        <span class="text-sm font-medium code-font">contact.me</span>
-      </a>
-    </nav>
+    <!-- Contact -->
+    <a href="#contact-section" class="section-nav-link" role="menuitem">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+      </svg>
+      <span>contact.me</span>
+    </a>
   </div>
-</div>
+</nav>
 
 <script>
   // Header mobile menu functionality
   let mobileMenuOpen = false;
-  let sectionNavOpen = false;
 
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileNavigationMenu = document.getElementById('mobile-navigation-menu');
@@ -216,252 +205,107 @@ const { showSectionNav = false } = Astro.props;
     mobileHomeNavLink.addEventListener('click', handleHomeLinkClick);
   }
 
-  // Enhanced section navigation toggle with improved animations and accessibility
+  // Simplified Section Navigation - Modern Implementation
   if (sectionNavToggle && sectionNavMenu) {
-    const fabIcon = document.getElementById('fab-icon');
-    const fabGlow = document.getElementById('fab-glow');
+    // Simple toggle function
+    const toggleMenu = () => {
+      const isOpen = sectionNavToggle.getAttribute('aria-expanded') === 'true';
 
-    // Function to open menu
-    const openMenu = () => {
-      sectionNavOpen = true;
-      sectionNavToggle.setAttribute('aria-expanded', 'true');
-      sectionNavToggle.classList.remove('fab-pulse'); // Stop pulse animation
-      sectionNavMenu.classList.remove('scale-0');
-      sectionNavMenu.classList.add('scale-100');
-
-      // Enhanced activation animation: scale + glow instead of rotation
-      sectionNavToggle.style.transform = 'scale(1.15)';
-      if (fabIcon) {
-        fabIcon.style.transform = 'scale(1.2)';
-        fabIcon.style.filter = 'drop-shadow(0 0 8px rgba(80, 175, 239, 0.6))';
-      }
-      if (fabGlow) {
-        fabGlow.style.opacity = '1';
-        fabGlow.style.transform = 'scale(1.5)';
-      }
-
-      // Animate menu items with stagger
-      const menuItems = sectionNavMenu.querySelectorAll('.section-nav-link');
-      menuItems.forEach((item, index) => {
-        setTimeout(() => {
-          (item as HTMLElement).style.transform = 'translateX(0) scale(1)';
-          (item as HTMLElement).style.opacity = '1';
-        }, index * 50);
-      });
-
-      // Focus first menu item for keyboard navigation
-      setTimeout(() => {
-        const firstLink = sectionNavMenu.querySelector('.section-nav-link') as HTMLElement;
-        if (firstLink) firstLink.focus();
-      }, 100);
-    };
-
-    // Function to close menu
-    const closeMenu = () => {
-      sectionNavOpen = false;
-      sectionNavToggle.setAttribute('aria-expanded', 'false');
-      sectionNavToggle.classList.add('fab-pulse'); // Resume pulse animation
-      sectionNavMenu.classList.add('scale-0');
-      sectionNavMenu.classList.remove('scale-100');
-
-      // Reset to normal state with smooth transition
-      sectionNavToggle.style.transform = 'scale(1)';
-      if (fabIcon) {
-        fabIcon.style.transform = 'scale(1)';
-        fabIcon.style.filter = 'none';
-      }
-      if (fabGlow) {
-        fabGlow.style.opacity = '0';
-        fabGlow.style.transform = 'scale(1)';
-      }
-
-      // Reset menu items
-      const menuItems = sectionNavMenu.querySelectorAll('.section-nav-link');
-      menuItems.forEach((item) => {
-        (item as HTMLElement).style.transform = 'translateX(20px) scale(0.95)';
-        (item as HTMLElement).style.opacity = '0.7';
-      });
-    };
-
-    // Shared toggle function for both click and touch events
-    const toggleMenu = (e: Event) => {
-      e.preventDefault(); // Prevent any default behavior
-      if (sectionNavOpen) {
-        closeMenu();
+      if (isOpen) {
+        // Close menu
+        sectionNavToggle.setAttribute('aria-expanded', 'false');
+        sectionNavMenu.classList.remove('section-nav-menu--open');
+        sectionNavToggle.classList.remove('section-nav-fab--active');
       } else {
-        openMenu();
+        // Open menu
+        sectionNavToggle.setAttribute('aria-expanded', 'true');
+        sectionNavMenu.classList.add('section-nav-menu--open');
+        sectionNavToggle.classList.add('section-nav-fab--active');
+
+        // Focus first menu item for accessibility
+        const firstLink = sectionNavMenu.querySelector('.section-nav-link') as HTMLElement;
+        if (firstLink) {
+          setTimeout(() => firstLink.focus(), 100);
+        }
       }
     };
 
-    // Add both click and touch event listeners for maximum compatibility
+    // Event listeners
     sectionNavToggle.addEventListener('click', toggleMenu);
-    sectionNavToggle.addEventListener('touchend', toggleMenu);
 
-    // Prevent touch scrolling issues
-    sectionNavToggle.addEventListener('touchstart', (e) => {
-      e.stopPropagation();
-    });
-
-    // Keyboard navigation support
-    sectionNavToggle.addEventListener('keydown', (e: KeyboardEvent) => {
+    // Keyboard support
+    sectionNavToggle.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        if (sectionNavOpen) {
-          closeMenu();
-        } else {
-          openMenu();
+        toggleMenu();
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (e.target &&
+          !sectionNavToggle.contains(e.target as Node) &&
+          !sectionNavMenu.contains(e.target as Node)) {
+        if (sectionNavToggle.getAttribute('aria-expanded') === 'true') {
+          toggleMenu();
         }
-      } else if (e.key === 'Escape' && sectionNavOpen) {
-        closeMenu();
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sectionNavToggle.getAttribute('aria-expanded') === 'true') {
+        toggleMenu();
         sectionNavToggle.focus();
       }
     });
 
-    // Close section nav when clicking outside
-    document.addEventListener('click', (e: MouseEvent) => {
-      if (sectionNavOpen && e.target &&
-          !sectionNavToggle.contains(e.target as Node) &&
-          !sectionNavMenu.contains(e.target as Node)) {
-        closeMenu();
-      }
-    });
+    // Handle navigation links
+    const navLinks = sectionNavMenu.querySelectorAll('.section-nav-link');
+    navLinks.forEach((link, index) => {
+      // Close menu when link is clicked/touched
+      const handleLinkActivation = (e: Event) => {
+        if (sectionNavToggle.getAttribute('aria-expanded') === 'true') {
+          toggleMenu();
 
-    // Global escape key handler for both section nav and mobile menu
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        if (sectionNavOpen) {
-          closeMenu();
-          sectionNavToggle.focus();
-        } else if (mobileMenuOpen) {
-          toggleMobileMenu();
-          mobileMenuButton?.focus();
+          // Clear any persistent focus states on touch devices
+          if (e.type === 'touchend' || e.type === 'touchstart') {
+            setTimeout(() => {
+              (link as HTMLElement).blur();
+              // Force removal of any webkit focus artifacts
+              (link as HTMLElement).style.outline = 'none';
+              (link as HTMLElement).style.backgroundColor = 'transparent';
+            }, 50);
+          }
         }
-      }
-    });
+      };
 
-    // Handle section navigation links with enhanced animations and keyboard support
-    const sectionNavLinks = sectionNavMenu.querySelectorAll('.section-nav-link');
-    sectionNavLinks.forEach((link, index) => {
-      // Add hover effects
-      link.addEventListener('mouseenter', () => {
-        if (sectionNavOpen) {
-          (link as HTMLElement).style.transform = 'translateX(5px) scale(1.02)';
-        }
-      });
-
-      link.addEventListener('mouseleave', () => {
-        if (sectionNavOpen) {
-          (link as HTMLElement).style.transform = 'translateX(0) scale(1)';
-        }
-      });
+      link.addEventListener('click', handleLinkActivation);
+      link.addEventListener('touchend', handleLinkActivation);
 
       // Keyboard navigation within menu
       link.addEventListener('keydown', (e) => {
         const keyEvent = e as KeyboardEvent;
         if (keyEvent.key === 'ArrowDown') {
           keyEvent.preventDefault();
-          const nextLink = sectionNavLinks[index + 1] as HTMLElement;
-          if (nextLink) {
-            nextLink.focus();
-          } else {
-            // Wrap to first item
-            (sectionNavLinks[0] as HTMLElement).focus();
-          }
+          const nextLink = navLinks[index + 1] || navLinks[0];
+          (nextLink as HTMLElement).focus();
         } else if (keyEvent.key === 'ArrowUp') {
           keyEvent.preventDefault();
-          const prevLink = sectionNavLinks[index - 1] as HTMLElement;
-          if (prevLink) {
-            prevLink.focus();
-          } else {
-            // Wrap to last item
-            (sectionNavLinks[sectionNavLinks.length - 1] as HTMLElement).focus();
-          }
+          const prevLink = navLinks[index - 1] || navLinks[navLinks.length - 1];
+          (prevLink as HTMLElement).focus();
         } else if (keyEvent.key === 'Escape') {
           keyEvent.preventDefault();
-          closeMenu();
+          toggleMenu();
           sectionNavToggle.focus();
-        } else if (keyEvent.key === 'Tab') {
-          // Allow normal tab behavior but close menu when tabbing out
-          if (keyEvent.shiftKey && index === 0) {
-            // Shift+Tab on first item - close menu and focus toggle
-            keyEvent.preventDefault();
-            closeMenu();
-            sectionNavToggle.focus();
-          } else if (!keyEvent.shiftKey && index === sectionNavLinks.length - 1) {
-            // Tab on last item - close menu
-            closeMenu();
-          }
         }
       });
 
-      // Enhanced touch interaction handling with intelligent gesture detection
-      let touchStartTime = 0;
-      let touchStartY = 0;
-      let touchMoved = false;
-
-      // Track touch start for gesture detection
-      link.addEventListener('touchstart', (e) => {
-        const touchEvent = e as TouchEvent;
-        touchStartTime = Date.now();
-        touchStartY = touchEvent.touches[0].clientY;
-        touchMoved = false;
-        e.stopPropagation(); // Prevent event bubbling
+      // Clear focus artifacts on touch start
+      link.addEventListener('touchstart', () => {
+        (link as HTMLElement).style.outline = 'none';
+        (link as HTMLElement).style.backgroundColor = 'transparent';
       }, { passive: true });
-
-      // Track touch movement to distinguish taps from scrolls
-      link.addEventListener('touchmove', (e) => {
-        const touchEvent = e as TouchEvent;
-        const touchMoveY = touchEvent.touches[0].clientY;
-        const moveDistance = Math.abs(touchMoveY - touchStartY);
-
-        // If user moved more than 10px, consider it a scroll gesture
-        if (moveDistance > 10) {
-          touchMoved = true;
-        }
-      }, { passive: true });
-
-      // Enhanced navigation function with better touch handling
-      const handleNavigation = (e: Event) => {
-        const eventType = e.type;
-
-        // For touch events, apply intelligent gesture detection
-        if (eventType === 'touchend') {
-          const touchDuration = Date.now() - touchStartTime;
-
-          // Ignore if touch was too long (likely a scroll) or if touch moved significantly
-          if (touchDuration > 500 || touchMoved) {
-            return;
-          }
-
-          // Prevent default to avoid ghost clicks
-          e.preventDefault();
-        }
-
-        // Close the section nav menu with animation
-        closeMenu();
-
-        // For touch events, manually trigger navigation after a brief delay
-        // to ensure menu close animation doesn't interfere
-        if (eventType === 'touchend') {
-          setTimeout(() => {
-            const href = (link as HTMLAnchorElement).getAttribute('href');
-            if (href && href.startsWith('#')) {
-              const targetElement = document.querySelector(href);
-              if (targetElement) {
-                targetElement.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }
-          }, 100);
-        }
-        // For click events, let default navigation behavior work
-      };
-
-      // Add both click and touch event listeners for navigation links
-      link.addEventListener('click', handleNavigation);
-      link.addEventListener('touchend', handleNavigation, { passive: false });
     });
   }
 
