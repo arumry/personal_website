@@ -162,7 +162,7 @@ const education = [
               </div>
             </button>
             <div
-              class={`mobile-card-content overflow-hidden transition-all duration-300 ease-out ${index === 0 ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
+              class={`mobile-card-content ${index === 0 ? 'expanded' : 'collapsed'}`}
               id={`mobile-card-content-${exp.id}`}
               aria-hidden={index === 0 ? "false" : "true"}
             >
@@ -249,7 +249,7 @@ const education = [
               </div>
             </button>
             <div
-              class="mobile-card-content overflow-hidden transition-all duration-300 ease-out max-h-0 opacity-0"
+              class="mobile-card-content collapsed"
               id={`mobile-card-content-${edu.id}`}
               aria-hidden="true"
             >
@@ -665,7 +665,7 @@ const education = [
         const TIME_THRESHOLD = 150; // milliseconds
         const SCROLL_THRESHOLD = 15; // pixels for scroll detection
 
-        // Shared toggle function for accordion expansion
+        // Simple toggle function - let CSS handle the animations
         const toggleCard = () => {
           const isExpanded = header.getAttribute('aria-expanded') === 'true';
 
@@ -679,8 +679,8 @@ const education = [
               if (otherHeader && otherContent && otherChevron) {
                 otherHeader.setAttribute('aria-expanded', 'false');
                 otherContent.setAttribute('aria-hidden', 'true');
-                otherContent.classList.remove('max-h-screen', 'opacity-100');
-                otherContent.classList.add('max-h-0', 'opacity-0');
+                otherContent.classList.remove('expanded');
+                otherContent.classList.add('collapsed');
                 otherChevron.classList.remove('rotate-180');
                 otherChevron.classList.add('rotate-0');
               }
@@ -691,15 +691,15 @@ const education = [
           if (isExpanded) {
             header.setAttribute('aria-expanded', 'false');
             content.setAttribute('aria-hidden', 'true');
-            content.classList.remove('max-h-screen', 'opacity-100');
-            content.classList.add('max-h-0', 'opacity-0');
+            content.classList.remove('expanded');
+            content.classList.add('collapsed');
             chevron.classList.remove('rotate-180');
             chevron.classList.add('rotate-0');
           } else {
             header.setAttribute('aria-expanded', 'true');
             content.setAttribute('aria-hidden', 'false');
-            content.classList.remove('max-h-0', 'opacity-0');
-            content.classList.add('max-h-screen', 'opacity-100');
+            content.classList.remove('collapsed');
+            content.classList.add('expanded');
             chevron.classList.remove('rotate-0');
             chevron.classList.add('rotate-180');
           }

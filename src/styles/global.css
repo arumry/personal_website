@@ -1309,10 +1309,30 @@ code {
     transition: transform 0.1s ease;
   }
 
-  /* Improved content animations */
+  /* CSS-only accordion animations using CSS Grid - elegant and reliable */
   .mobile-card-content {
-    transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    display: grid;
+    transition: grid-template-rows 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+  }
+
+  /* Collapsed state - content takes no space */
+  .mobile-card-content.collapsed {
+    grid-template-rows: 0fr;
+    opacity: 0;
+  }
+
+  /* Expanded state - content takes natural space */
+  .mobile-card-content.expanded {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  /* Inner wrapper to make CSS Grid animation work properly */
+  .mobile-card-content > div {
+    overflow: hidden;
+    min-height: 0; /* Important for CSS Grid animation */
   }
 
   /* Enhanced chevron animation */
