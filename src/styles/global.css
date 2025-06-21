@@ -1266,6 +1266,120 @@ code {
   top: 6px;
 }
 
+/* Mobile Experience/Education Card Navigation */
+@media (max-width: 639px) {
+  /* Mobile card styling */
+  .mobile-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .mobile-card-header {
+    /* Ensure minimum touch target size */
+    min-height: 60px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(80, 175, 239, 0.1);
+    cursor: pointer;
+  }
+
+  .mobile-card-header:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  .mobile-card-content {
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-card-chevron {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none; /* Prevent interference with touch events */
+  }
+
+  /* Improve text readability on small screens */
+  .mobile-card h4,
+  .mobile-card h5 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    pointer-events: none; /* Prevent interference with touch events */
+  }
+
+  .mobile-card ul li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Enhanced focus states for mobile */
+  .mobile-card-header:focus-visible {
+    outline: 2px solid var(--color-secondary, #50afef);
+    outline-offset: 2px;
+    border-radius: 0.75rem;
+  }
+
+  /* Touch feedback for mobile cards */
+  .mobile-card-header:hover {
+    background-color: rgba(80, 175, 239, 0.05);
+  }
+}
+
+/* Very small mobile devices */
+@media (max-width: 374px) {
+  .mobile-card-header {
+    padding: 1rem 0.75rem;
+    min-height: 56px;
+  }
+
+  .mobile-card-content {
+    padding: 0.75rem;
+  }
+
+  .mobile-card h4 {
+    font-size: 0.875rem;
+    line-height: 1.25;
+  }
+
+  .mobile-card p {
+    font-size: 0.75rem;
+  }
+}
+
+/* Enhanced Touch Support for Navigation Elements */
+#section-nav-toggle {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.2);
+  cursor: pointer;
+}
+
+.section-nav-link {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.1);
+  cursor: pointer;
+}
+
+#mobile-menu-button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(80, 175, 239, 0.1);
+  cursor: pointer;
+}
+
+/* Improve touch targets for all interactive elements */
+@media (max-width: 767px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(80, 175, 239, 0.1);
+  }
+
+  /* Ensure proper touch feedback */
+  button:active, a:active, [role="button"]:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
 .seperation-animation-1 {
   animation: separation-1 2s ease-in-out infinite;
 }

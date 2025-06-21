@@ -283,13 +283,23 @@ const { showSectionNav = false } = Astro.props;
       });
     };
 
-    // Click handler
-    sectionNavToggle.addEventListener('click', () => {
+    // Shared toggle function for both click and touch events
+    const toggleMenu = (e: Event) => {
+      e.preventDefault(); // Prevent any default behavior
       if (sectionNavOpen) {
         closeMenu();
       } else {
         openMenu();
       }
+    };
+
+    // Add both click and touch event listeners for maximum compatibility
+    sectionNavToggle.addEventListener('click', toggleMenu);
+    sectionNavToggle.addEventListener('touchend', toggleMenu);
+
+    // Prevent touch scrolling issues
+    sectionNavToggle.addEventListener('touchstart', (e) => {
+      e.stopPropagation();
     });
 
     // Keyboard navigation support
@@ -384,9 +394,20 @@ const { showSectionNav = false } = Astro.props;
         }
       });
 
-      link.addEventListener('click', () => {
+      // Shared navigation function for both click and touch events
+      const handleNavigation = () => {
+        // Don't prevent default for navigation links - let them navigate
         // Close the section nav menu with animation
         closeMenu();
+      };
+
+      // Add both click and touch event listeners for navigation links
+      link.addEventListener('click', handleNavigation);
+      link.addEventListener('touchend', handleNavigation);
+
+      // Prevent touch scrolling issues
+      link.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
       });
     });
   }
@@ -412,8 +433,20 @@ const { showSectionNav = false } = Astro.props;
     }
   }
 
-  // Event listeners
-  mobileMenuButton?.addEventListener('click', toggleMobileMenu);
+  // Enhanced mobile menu toggle with touch support
+  const handleMobileMenuToggle = (e: Event) => {
+    e.preventDefault(); // Prevent any default behavior
+    toggleMobileMenu();
+  };
+
+  // Add both click and touch event listeners for mobile menu button
+  mobileMenuButton?.addEventListener('click', handleMobileMenuToggle);
+  mobileMenuButton?.addEventListener('touchend', handleMobileMenuToggle);
+
+  // Prevent touch scrolling issues
+  mobileMenuButton?.addEventListener('touchstart', (e) => {
+    e.stopPropagation();
+  });
 
   // Mobile menu button keyboard support
   mobileMenuButton?.addEventListener('keydown', (e) => {
