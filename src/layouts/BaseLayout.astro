@@ -1,0 +1,93 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  showSectionNav?: boolean;
+}
+
+const { 
+  title, 
+  description = "Aaron Rumery - Senior Software Engineer",
+  showSectionNav = false 
+} = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <!-- Unified Layout Structure with Sticky Footer -->
+  <div class="min-h-screen flex flex-col bg-primary">
+    <!-- Header - Fixed at top -->
+    <Header showSectionNav={showSectionNav} />
+    
+    <!-- Main Content Area - Grows to fill available space without flex constraints -->
+    <main class="flex-grow w-full" style="overflow: visible;">
+      <div class="w-full max-w-7xl mx-auto" style="overflow: visible; height: auto;">
+        <slot />
+      </div>
+    </main>
+    
+    <!-- Footer - Always at bottom -->
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  /* Ensure consistent layout behavior */
+  html, body {
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+
+  /* Ensure content is always visible and accessible */
+  main {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  /* Responsive container behavior */
+  .max-w-7xl {
+    width: 100%;
+    max-width: 80rem;
+  }
+
+  .max-w-5xl {
+    width: 100%;
+    max-width: 64rem;
+  }
+
+  /* Ensure proper responsive behavior at all breakpoints */
+  @media (max-width: 1030px) {
+    .max-w-5xl {
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  /* Prevent content from going under fixed header */
+  main {
+    padding-top: 70px; /* Reduced for better mobile experience */
+  }
+
+  @media (min-width: 640px) {
+    main {
+      padding-top: 80px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    main {
+      padding-top: 85px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    main {
+      padding-top: 90px;
+    }
+  }
+</style>

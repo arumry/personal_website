@@ -1,0 +1,150 @@
+---
+// PhotoSwipe integration
+import { Image } from 'astro:assets';
+
+export interface Props {
+  galleryID: string;
+  images: Array<{
+    largeURL: string;
+    thumbnailURL?: string;
+    width: number;
+    height: number;
+  }>;
+  className?: string;
+}
+
+const { galleryID, images, className = "" } = Astro.props;
+---
+
+<!-- PhotoSwipe Gallery - Following Official v5 Best Practices -->
+<div class={`pswp-gallery ${className}`} id={galleryID}>
+  {images.map((image, index) => (
+    <a
+      href={image.largeURL}
+      data-pswp-width={image.width}
+      data-pswp-height={image.height}
+      class={index === 0 ? "gallery-preview group-hover:grayscale-0 grayscale group-hover:contrast-100 group-hover:brightness-100 contrast-[1] brightness-90 transition-all cursor-pointer" : "hidden"}
+      aria-label="View project gallery"
+    >
+      <Image
+        src={image.thumbnailURL || image.largeURL}
+        alt="Project screenshot"
+        width={image.width}
+        height={image.height}
+        loading="lazy"
+      />
+    </a>
+  ))}
+</div>
+
+<script>
+  // PhotoSwipe v5 Implementation - Following Official Best Practices
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const [{ default: PhotoSwipeLightbox }] = await Promise.all([
+        import('photoswipe/lightbox'),
+        import('photoswipe/style.css')
+      ]);
+
+      const lightbox = new PhotoSwipeLightbox({
+        gallery: '.pswp-gallery',
+        children: 'a',
+        pswpModule: () => import('photoswipe'),
+
+        showHideAnimationType: 'zoom',
+        initialZoomLevel: 'fit',
+        maxZoomLevel: 3,
+        padding: { top: 20, bottom: 40, left: 20, right: 20 },
+        wheelToZoom: true,
+        closeOnVerticalDrag: true,
+        doubleTapAction: 'zoom',
+        clickToCloseNonZoomable: true
+      });
+
+      lightbox.init();
+      (window as any).photoswipeLightbox = lightbox;
+
+      // Create global gallery opening functions for "View more" buttons and preview images
+      document.querySelectorAll('.pswp-gallery').forEach((gallery) => {
+        const galleryId = gallery.id;
+        if (galleryId) {
+          const openGalleryFunction = () => {
+            try {
+              lightbox.loadAndOpen(0, {
+                gallery: gallery as HTMLElement
+              });
+            } catch (error) {
+              const firstLink = gallery.querySelector('a');
+              if (firstLink) {
+                firstLink.click();
+              }
+            }
+          };
+
+          (window as any)[`openGallery_${galleryId}`] = openGalleryFunction;
+        }
+      });
+
+    } catch (error) {
+      // Gallery will fall back to basic image display
+    }
+  });
+</script>
+
+<style is:global>
+  /* PhotoSwipe v5 Standard Styling - Minimal Custom Overrides */
+
+  /* Use PhotoSwipe's built-in responsive design */
+  .pswp {
+    --pswp-bg: rgba(0, 0, 0, 0.9);
+  }
+
+  /* Standard button styling with proper sizing */
+  .pswp__button {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  /* Close button - standard PhotoSwipe sizing with better visibility */
+  .pswp__button--close .pswp__icn {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Arrow buttons - standard PhotoSwipe sizing */
+  .pswp__button--arrow--left .pswp__icn,
+  .pswp__button--arrow--right .pswp__icn {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Hide zoom button - use gestures instead */
+  .pswp__button--zoom {
+    display: none !important;
+  }
+
+  /* Mobile responsive adjustments - let PhotoSwipe handle most responsive behavior */
+  @media (max-width: 768px) {
+    .pswp__button {
+      width: 48px !important;
+      height: 48px !important;
+    }
+
+    .pswp__button--close .pswp__icn,
+    .pswp__button--arrow--left .pswp__icn,
+    .pswp__button--arrow--right .pswp__icn {
+      width: 22px !important;
+      height: 22px !important;
+    }
+  }
+
+  /* Desktop enhancements */
+  @media (min-width: 769px) {
+    .pswp__button--close .pswp__icn,
+    .pswp__button--arrow--left .pswp__icn,
+    .pswp__button--arrow--right .pswp__icn {
+      width: 24px !important;
+      height: 24px !important;
+    }
+  }
+</style>

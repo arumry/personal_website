@@ -1,0 +1,87 @@
+---
+---
+
+<section
+  id="services-section"
+  class="w-full max-w-7xl mx-auto h-fit overflow-visible pb-32 pt-32 px-5 md:px-8 lg:px-12"
+  style="scroll-margin-top: 80px;"
+>
+  <h2 class="text-zinc-500 mb-8">&#47;&#47; Services</h2>
+  <div class="w-full flex flex-wrap justify-center gap-8 lg:gap-14">
+  <div
+    class="services-card w-[280px] sm:w-[300px] lg:w-[320px] h-fit sm:h-60 flex flex-col justify-evenly bg-primary shadow-card rounded px-6 py-4 text-white transition-all duration-1000 opacity-0 translate-y-52"
+  >
+    <div class="flex gap-3 justify-center items-center">
+      <div class="services-icon-container bg-primary_light w-fit text-gray-300 hover:text-primary h-fit p-3 hover:bg-tertiary transition-all duration-300 cursor-pointer">
+        <svg class="w-4 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+        </svg>
+      </div>
+      <h3 class="text-tertiary">Performance Optimization</h3>
+    </div>
+
+    <div class="mt-1 flex gap-2 text-[15px]">
+      <p class="py-5">
+        <span class="text-tertiary text-base">&#123; "</span>description<span class="text-tertiary text-base">": "</span>I prioritize enhancing the speed and efficiency of your application, ensuring a smooth and uninterrupted user experience<span class="text-tertiary text-base">" &#125;</span>
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="services-card w-[280px] sm:w-[300px] lg:w-[320px] h-fit sm:h-60 flex flex-col justify-evenly bg-primary shadow-card rounded px-6 py-4 text-white mt-6 transition-all delay-300 duration-1000 opacity-0 translate-y-52"
+  >
+    <div class="flex gap-3 justify-center items-center -ml-8">
+      <div class="services-icon-container bg-primary_light w-fit text-gray-300 hover:text-primary h-fit p-3.5 hover:bg-secondary transition-all duration-300 cursor-pointer">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <h3 class="text-secondary">Clean Code</h3>
+    </div>
+    <div class="mt-1 flex gap-2 text-[15px]">
+      <p class="py-5">
+        <span class="text-secondary text-base">&#123; "</span>description<span class="text-secondary text-base">": "</span>I am committed to crafting code that is not only clear and concise but also modular, facilitating ease of reading, comprehension, and maintenance<span class="text-secondary text-base">" &#125;</span>
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="services-card w-[280px] sm:w-[300px] lg:w-[320px] h-fit sm:h-60 flex flex-col justify-evenly bg-primary shadow-card rounded px-6 py-4 text-white transition-all duration-1000 delay-700 opacity-0 translate-y-52"
+  >
+    <div class="flex gap-3 justify-center items-center -ml-8">
+      <div class="services-icon-container bg-primary_light w-fit text-gray-300 hover:text-primary h-fit p-3.5 hover:bg-fourth transition-all duration-300 cursor-pointer">
+        <svg class="w-4 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+      </div>
+      <h3 class="text-fourth">Security</h3>
+    </div>
+    <div class="mt-1 flex gap-2 text-[15px]">
+      <p class="py-5">
+        <span class="text-fourth text-base">&#123; "</span>description<span class="text-fourth text-base">": "</span>I am dedicated to delivering software that excels in performance and reliability, while also being rigorously safeguarded against potential threats and vulnerabilities.<span class="text-fourth text-base">" &#125;</span>
+      </p>
+    </div>
+  </div>
+  </div>
+</section>
+
+<script>
+  // Services section intersection observer
+  const servicesSection = document.getElementById('services-section');
+  const serviceCards = document.querySelectorAll('.services-card');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        serviceCards.forEach(card => {
+          card.classList.remove('opacity-0', 'translate-y-52');
+          card.classList.add('opacity-100', 'translate-y-0');
+        });
+      }
+    });
+  });
+
+  if (servicesSection) {
+    observer.observe(servicesSection);
+  }
+</script>
