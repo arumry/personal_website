@@ -263,10 +263,30 @@ const { showSectionNav = false } = Astro.props;
     // Handle navigation links
     const navLinks = sectionNavMenu.querySelectorAll('.section-nav-link');
     navLinks.forEach((link, index) => {
-      // Close menu when link is clicked/touched
+      // Handle navigation with explicit scroll implementation
       const handleLinkActivation = (e: Event) => {
+        e.preventDefault(); // Prevent default anchor behavior
+
         if (sectionNavToggle.getAttribute('aria-expanded') === 'true') {
+          // Get the target section ID from href
+          const href = (link as HTMLAnchorElement).getAttribute('href');
+
+          // Close menu first
           toggleMenu();
+
+          // Implement explicit scrolling after menu closes
+          if (href && href.startsWith('#')) {
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+              // Wait for menu close animation to complete
+              setTimeout(() => {
+                targetElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }, 300); // Match the nav-transition duration
+            }
+          }
 
           // Clear any persistent focus states on touch devices
           if (e.type === 'touchend' || e.type === 'touchstart') {
