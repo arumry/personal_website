@@ -7,8 +7,6 @@ author: "Aaron Rumery"
 draft: false
 ---
 
-# Local-First Architecture: The Future of Web Applications
-
 Most web applications today follow a familiar pattern: user interactions trigger API calls to a remote server, which processes the request and returns data that updates the UI. While this approach has served us well, it comes with inherent limitations around latency, offline functionality, and the complexity of managing distributed state.
 
 Local-first architecture represents a fundamental shift in how we think about web applications. Instead of treating the server as the source of truth, local-first applications prioritize local data and sync changes in the background. This approach unlocks powerful patterns for real-time collaboration, offline functionality, and reduced application complexity.
