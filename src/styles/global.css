@@ -351,7 +351,6 @@ code {
   h1, h2, h3, h4, h5, h6, p, div, span, a, strong, em, li, td, th, blockquote {
     word-break: break-word !important;
     overflow-wrap: break-word !important;
-    hyphens: auto !important;
     max-width: 100% !important;
   }
 
@@ -1305,7 +1304,6 @@ code {
   .mobile-card h5 {
     word-wrap: break-word;
     overflow-wrap: break-word;
-    hyphens: auto;
     pointer-events: none;
     line-height: 1.4;
   }
